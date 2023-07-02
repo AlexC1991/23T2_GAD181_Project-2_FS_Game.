@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4414196220719800713
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 433.82516
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.702165
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 314.14
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 41b0211d13c3fa54cac44905c0972ce8, type: 2}
+    - target: {fileID: -2571118854743697038, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 36149509f4a427b469d46bdf5e66fa65, type: 2}
+    - target: {fileID: 919132149155446097, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+      propertyPath: m_Name
+      value: S1Potatos
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+--- !u!1 &3567706061537090776 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d09b29ec02179c74487f2e91b35029d7, type: 3}
+  m_PrefabInstance: {fileID: 4414196220719800713}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &3046943303018289933
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3567706061537090776}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.84, y: 0.87, z: 3.52}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3667575813685141549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3567706061537090776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd0f33504f718441be1dd2eb3584bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  s2PotatoStage: {fileID: 5285260455088953850, guid: 69feb15b490877f47bbace45326ad330, type: 3}
