@@ -20,10 +20,10 @@ namespace AlexzanderCowell
 
         private void Update()
         {
-            carrotSeed = Mathf.Clamp(carrotSeed, 0, 20);
-            potatoSeed = Mathf.Clamp(potatoSeed, 0, 20);
-            carrots = Mathf.Clamp(carrots, 0, 30);
-            potatos = Mathf.Clamp(potatos, 0, 30);
+            carrotSeed = Mathf.Clamp(carrotSeed, 0, 300);
+            potatoSeed = Mathf.Clamp(potatoSeed, 0, 300);
+            carrots = Mathf.Clamp(carrots, 0, 300);
+            potatos = Mathf.Clamp(potatos, 0, 300);
 
             if (carrotSeedOutput >= 1)
             {

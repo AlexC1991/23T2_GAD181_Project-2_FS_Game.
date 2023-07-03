@@ -7,10 +7,10 @@ namespace AlexzanderCowell
         [SerializeField] private InvertoryManager invManager;
 
         private string selectableDirtTag = "Dirt",
-            selectableWitherdTag = "Withered",
-            selectableStage1Tag = "Stage1",
+            selectableWitherdTag = "Withered";
+            /*selectableStage1Tag = "Stage1",
             selectableStage2Tag = "Stage2",
-            selectableStage3Tag = "Stage3";
+            selectableStage3Tag = "Stage3";*/
 
         private RaycastHit _hitIt;
         private Renderer _selectedRenderer;

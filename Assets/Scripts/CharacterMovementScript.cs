@@ -4,13 +4,14 @@ namespace AlexzanderCowell
 {
     public class CharacterMovementScript : MonoBehaviour
     {
-        [Header("Character Movement")] private float _mouseXposition,
-            mouseSensitivityY,
-            mouseSensitivityX,
+        [Header("Character Movement")]
+        private float _mouseXposition,
             _moveHorizontal,
             _moveVertical,
             _mouseYposition;
 
+        [HideInInspector] public float mouseSensitivityY,
+            mouseSensitivityX;
         [SerializeField] private float runSpeed;
         private CharacterController controller;
         private Vector3 _moveDirection;

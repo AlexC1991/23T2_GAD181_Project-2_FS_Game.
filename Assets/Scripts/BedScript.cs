@@ -42,7 +42,7 @@ namespace AlexzanderCowell
         {
             timerToRestAgain -= 1f * Time.deltaTime;
             
-            if (ableToSleep && Input.GetKeyDown(KeyCode.E) && timerToRestAgain < 0.2f && buttonPressedE)
+            if (ableToSleep && Input.GetKeyDown(KeyCode.T) && timerToRestAgain < 0.2f && buttonPressedE)
             {
                 startSleeping = true;
                 blackSleepScreen.GetComponent<CanvasGroup>().alpha = 1;
@@ -67,16 +67,24 @@ namespace AlexzanderCowell
                 readyOrNot.GetComponent<Text>().color = Color.blue;
                 buttonPressedE = true;
             }
-            if (startSleeping && Time.timeScale == 0)
+            if (startSleeping)
             {
                 resetTimer = true;
-                blackSleepScreen.GetComponent<CanvasGroup>().alpha -= 0.4f * Time.unscaledDeltaTime;
+                blackSleepScreen.GetComponent<CanvasGroup>().alpha -= 0.3f * Time.unscaledDeltaTime;
             } 
             
             if (blackSleepScreen.GetComponent<CanvasGroup>().alpha < 0.2f && startSleeping)
             {
                 Time.timeScale = 1;
                 startSleeping = false;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                ableToSleep = false;
             }
         }
 

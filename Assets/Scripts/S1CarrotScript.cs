@@ -16,7 +16,7 @@ namespace AlexzanderCowell
         {
             currentTimeOfPlanting = WorldClock.hourTime;
 
-            if (currentTimeOfPlanting > startPlantTime + 4)
+            if (currentTimeOfPlanting > startPlantTime + 2)
             {
                 Instantiate(s2CarrotStage, transform.position, transform.rotation);
                 Destroy(gameObject);

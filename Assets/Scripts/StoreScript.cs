@@ -38,7 +38,7 @@ namespace AlexzanderCowell
         }
         private void Update()
         {
-            if (invertoryM._selected == 1 && insideOfStore && SeedStorage.carrotSeed >= 1 && MoneyScript.moneyTotal >= costTotalCSeeds)
+            if (invertoryM._selected == 1 && insideOfStore && MoneyScript.moneyTotal >= costTotalCSeeds)
             {
                 costDisplay.text = ("Costs: $" + costTotalCSeeds + " Press X To Buy");
                 canBuyCSeeds = true;
@@ -48,7 +48,7 @@ namespace AlexzanderCowell
                 canBuyCSeeds = false;
             }
 
-            if (invertoryM._selected == 2 && insideOfStore && SeedStorage.potatoSeed >= 1 && MoneyScript.moneyTotal >= costTotalPSeeds)
+            if (invertoryM._selected == 2 && insideOfStore && MoneyScript.moneyTotal >= costTotalPSeeds)
             {
                 costDisplay.text = ("Costs: $" + costTotalPSeeds + " Press X To Buy");
                 canBuyPSeeds = true;
