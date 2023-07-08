@@ -4,15 +4,15 @@ namespace AlexzanderCowell
 {
     public class S3CarrotScript : MonoBehaviour
     {
-        private bool _canCollect;
-        [SerializeField] private GameObject dirtPatch;
-        [SerializeField] private GameObject witheredPatch;
-        private float currentTimeOfPlanting;
-        private float startPlantTime;
-        [SerializeField] private GameObject displayText;
-        private void OnTriggerEnter(Collider other)
+        private bool _canCollect; // If Player Can collect or not.
+        [SerializeField] private GameObject dirtPatch; // Dirt Prefab
+        [SerializeField] private GameObject witheredPatch; // Withered Prefab
+        private float currentTimeOfPlanting; // Tracks time of what the world time is currently at.
+        private float startPlantTime; // Sets time of which the instance is initialized.
+        [SerializeField] private GameObject displayText; // Displays Message to Harvest On Prefab.
+        private void OnTriggerEnter(Collider other) 
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player")) // If Player is close to collider it will allow set the collect bool to yes & Display the text To Harvest.
             {
                 _canCollect = true;
                 displayText.SetActive(true);
@@ -20,24 +20,24 @@ namespace AlexzanderCowell
         }
         private void Start()
         {
-            startPlantTime = WorldClock.hourTime;
-            displayText.SetActive(false);
-        }
+            startPlantTime = WorldClock.hourTime; // Sets float to whatever the current hour time is set at during the start phase of this prefab is spawned.
+            displayText.SetActive(false); // Does not Start the Text Straight Away.
+        } 
         private void Update()
         {
-            currentTimeOfPlanting = WorldClock.hourTime;
+            currentTimeOfPlanting = WorldClock.hourTime; // Tracks the world time hour as a variable with in the script.
             
-            if (_canCollect && Input.GetKeyDown(KeyCode.C))
+            if (_canCollect && Input.GetKeyDown(KeyCode.C)) // If you can collect is true & you press C.
             {
-                Vector3 xyz = new Vector3(-90, 0, 0);
-                Quaternion newRotation = Quaternion.Euler(xyz);
-                SeedStorage.carrots += 1;
-                SeedStorage.carrotSeedOutput += 0.8f;
-                Instantiate(dirtPatch, transform.position, newRotation);
-                Destroy(gameObject);
+                Vector3 xyz = new Vector3(-90, 0, 0); // Makes a xyz Vector 3 variable to use below.
+                Quaternion newRotation = Quaternion.Euler(xyz); // using the xyz it is used in a Quaternion variable called newRotation.
+                SeedStorage.carrots += 1; // When collecting it will give you 1 carrot for your total carrot storage.
+                SeedStorage.carrotSeedOutput += 0.8f; // When collecting you will gain 0.8f per carrot you collect to go towards a carrot seed pool on the seed storage script.
+                Instantiate(dirtPatch, transform.position, newRotation); // Spawns in dirt prefab with the current transform.position with a rotation of the newRotation variable from above.
+                Destroy(gameObject); // Destroys S3 Carrot Stage Prefab in scene.
             }
  
-            if (currentTimeOfPlanting > startPlantTime + 3)
+            if (currentTimeOfPlanting > startPlantTime + 3) // If the current time is more then + 3 in hours of when this was first spawn in then it will change to being withered.
             {
                 Vector3 xyz = new Vector3(-90, 0, 0);
                 Quaternion newRotation = Quaternion.Euler(xyz);

@@ -5,73 +5,73 @@ namespace AlexzanderCowell
     public class InGameMenu : MonoBehaviour
     {
 
-        [SerializeField] private GameObject _InGameMenuUI;
-        [SerializeField] private GameObject _lowMouseSensitiveIndicator;
-        [SerializeField] private GameObject _medMouseSensitiveIndicator;
-        [SerializeField] private GameObject _highMouseSensitiveIndicator;
-        [SerializeField] private CharacterMovementScript cMoveScript;
-        private int escState;
+        [SerializeField] private GameObject _InGameMenuUI; // In Game Menu UI Screen Image.
+        [SerializeField] private GameObject _lowMouseSensitiveIndicator; // In Game Menu UI Low Mouse Sensitivity Button Indicator.
+        [SerializeField] private GameObject _medMouseSensitiveIndicator; // In Game Menu UI Medium Mouse Sensitivity Button Indicator.
+        [SerializeField] private GameObject _highMouseSensitiveIndicator; // In Game Menu UI High Mouse Sensitivity Button Indicator.
+        [SerializeField] private CharacterMovementScript cMoveScript; // Character Movement Script.
+        private int escState; // Int Counter For ESC Button.
 
 
         private void Start()
         {
-            _InGameMenuUI.SetActive(false);
-            LowMouseSensitivity();
+            _InGameMenuUI.SetActive(false); // In Game UI Starts False.
+            LowMouseSensitivity(); // Low Mouse Sensitivity Open Selected At Start.
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape)) // Pressing ESC Button.
             {
-                escState += 1;
+                escState += 1; // Adds + 1 every ESC Press.
 
-                if (escState > 1)
+                if (escState > 1) // If ESC Int Is More Than 1 It Reverts to 0.
                 {
                     escState = 0;
                 }
             }
 
-            if (escState == 1)
+            if (escState == 1) // If ESC Int Equals to 1 Then It will Produce the In Game Menu.
             {
-                _InGameMenuUI.SetActive(true);
-                Time.timeScale = 0;
-                Cursor.lockState = CursorLockMode.Confined;
-                Cursor.visible = true;
+                _InGameMenuUI.SetActive(true); // In Game Menu UI Show.
+                Time.timeScale = 0; // Sets Game Speed To Null.
+                Cursor.lockState = CursorLockMode.Confined; // Confines the Curser on the Screen.
+                Cursor.visible = true; // Allows the Cursor to be displayed in game.
             }
             else
             {
-                _InGameMenuUI.SetActive(false);
-                Time.timeScale = 1;
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
+                _InGameMenuUI.SetActive(false); // If ESC Int Isn't Equal to 1 Then It will Close The In Game Menu.
+                Time.timeScale = 1; // Sets Game Speed To Normal Speed.
+                Cursor.lockState = CursorLockMode.Locked; // Confines the Curser on the Screen and locks it in place.
+                Cursor.visible = false; // Stops the Cursor being displayed in game.
             }
         }
 
-        public void HighMouseSensitivity()
+        public void HighMouseSensitivity() // High Mouse Sensitivity Option For Button.
         {
-            cMoveScript.mouseSensitivityY = 3f;
-            cMoveScript.mouseSensitivityX = 4;
-            _lowMouseSensitiveIndicator.SetActive(false);
-            _medMouseSensitiveIndicator.SetActive(false);
-            _highMouseSensitiveIndicator.SetActive(true);
+            cMoveScript.mouseSensitivityY = 3f; // Sets the Movement Script Mouse SensitivityY to 3.
+            cMoveScript.mouseSensitivityX = 4; // Sets the Movement Script Mouse SensitivityX to 4.
+            _lowMouseSensitiveIndicator.SetActive(false); // Turns off the Low Mouse Sensitivity Indicator.
+            _medMouseSensitiveIndicator.SetActive(false); // Turns off the Medium Mouse Sensitivity Indicator.
+            _highMouseSensitiveIndicator.SetActive(true); // Turns on the High Mouse Sensitivity Indicator.
         }
         
-        public void MedMouseSensitivity()
+        public void MedMouseSensitivity() // Medium Mouse Sensitivity Option For Button.
         {
-            cMoveScript.mouseSensitivityY = 1.5f;
-            cMoveScript.mouseSensitivityX = 2.5f;
-            _lowMouseSensitiveIndicator.SetActive(false);
-            _medMouseSensitiveIndicator.SetActive(true);
-            _highMouseSensitiveIndicator.SetActive(false);
+            cMoveScript.mouseSensitivityY = 1.5f; // Sets the Movement Script Mouse SensitivityY to 1.5.
+            cMoveScript.mouseSensitivityX = 2.5f; // Sets the Movement Script Mouse SensitivityX to 2.5.
+            _lowMouseSensitiveIndicator.SetActive(false); // Turns off the Low Mouse Sensitivity Indicator.
+            _medMouseSensitiveIndicator.SetActive(true); // Turns on the Medium Mouse Sensitivity Indicator.
+            _highMouseSensitiveIndicator.SetActive(false); // Turns off the High Mouse Sensitivity Indicator.
         }
         
-        public void LowMouseSensitivity()
+        public void LowMouseSensitivity() // Low Mouse Sensitivity Option For Button.
         {
-            cMoveScript.mouseSensitivityY = 0.8f;
-            cMoveScript.mouseSensitivityX = 1;
-            _lowMouseSensitiveIndicator.SetActive(true);
-            _medMouseSensitiveIndicator.SetActive(false);
-            _highMouseSensitiveIndicator.SetActive(false);
+            cMoveScript.mouseSensitivityY = 0.8f; // Sets the Movement Script Mouse SensitivityY to 0.8.
+            cMoveScript.mouseSensitivityX = 1; // Sets the Movement Script Mouse SensitivityX to 1.
+            _lowMouseSensitiveIndicator.SetActive(true); // Turns on the Low Mouse Sensitivity Indicator.
+            _medMouseSensitiveIndicator.SetActive(false); // Turns off the Medium Mouse Sensitivity Indicator.
+            _highMouseSensitiveIndicator.SetActive(false); // Turns off the High Mouse Sensitivity Indicator.
         }
     }
 }
