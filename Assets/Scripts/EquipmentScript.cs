@@ -6,11 +6,19 @@ namespace AlexzanderCowell
     {
         public static bool canPickUp;
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
             if (other.CompareTag("Player"))
             {
                 canPickUp = true;
+            }
+        }
+        
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                canPickUp = false;
             }
         }
     }
