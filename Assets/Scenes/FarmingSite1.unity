@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.85
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.40958866, g: 0.45275176, b: 0.4538356, a: 0.85}
+  m_IndirectSpecularColor: {r: 0.40961376, g: 0.4527548, b: 0.4538315, a: 0.85}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17970,8 +17970,8 @@ MonoBehaviour:
   mouseSensitivityY: 0
   mouseSensitivityX: 0
   runSpeed: 0
-  downValue: -20
-  upValue: 45
+  downValue: -90
+  upValue: 90
   shoveGameObject: {fileID: 1812596596}
   moveItHere: {fileID: 124182591}
 --- !u!114 &425065202

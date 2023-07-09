@@ -22,6 +22,7 @@ namespace AlexzanderCowell
         {
             startPlantTime = WorldClock.hourTime; // Sets float to whatever the current hour time is set at during the start phase of this prefab is spawned.
             displayText.SetActive(false); // Does not Start the Text Straight Away.
+            gameObject.SetActive(true);
         }
         private void Update()
         {
@@ -35,7 +36,7 @@ namespace AlexzanderCowell
                 SeedStorage.potatos += 2; // When collecting it will give you 2 potato's for your total potato storage.
                 SeedStorage.potatoSeedOutPut += 0.4f; // When collecting you will gain 0.4f per potato you collect to go towards a potato seed pool on the seed storage script.
                 Instantiate(dirtPatch, transform.position, newRotation); // Spawns in dirt prefab with the current transform.position with a rotation of the newRotation variable from above.
-                Destroy(gameObject); // Destroys S3 Potato Stage Prefab in scene.
+                gameObject.SetActive(false); // Destroys S3 Potato Stage Prefab in scene.
             }
 
             if (currentTimeOfPlanting > startPlantTime + 3) // If the current time is more then + 3 in hours of when this was first spawn in then it will change to being withered.
@@ -43,7 +44,7 @@ namespace AlexzanderCowell
                 Vector3 xyz = new Vector3(-90, 0, 0);
                 Quaternion newRotation = Quaternion.Euler(xyz);
                 Instantiate(witheredPatch, transform.position, newRotation);
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }

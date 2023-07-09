@@ -11,6 +11,7 @@ namespace AlexzanderCowell
         private void Start()
         {
             startPlantTime = WorldClock.hourTime; // Sets float to whatever the current hour time is set at during the start phase of this prefab is spawned.
+            gameObject.SetActive(true);
         }
         private void Update()
         {
@@ -19,7 +20,7 @@ namespace AlexzanderCowell
             if (currentTimeOfPlanting > startPlantTime + 5) // If the current time is more then + 5 in hours of when this was first spawn in then it will change to S3 Carrot Stage.
             {
                 Instantiate(s3CarrotStage, transform.position, Quaternion.identity); 
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }

@@ -99,4 +99,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f294fc22d32af489fff17da133b68c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  s3CarrotStage: {fileID: 4929065450894962119, guid: 5fc82324445170c46b7afea42daf3ff5, type: 3}
+  s3PotatoStage: {fileID: 4929065450894962119, guid: 5fc82324445170c46b7afea42daf3ff5, type: 3}

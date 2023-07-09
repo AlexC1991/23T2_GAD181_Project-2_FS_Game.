@@ -11,6 +11,7 @@ namespace AlexzanderCowell
         private void Start()
         {
             startPlantTime = WorldClock.hourTime; // Sets float to whatever the current hour time is set at during the start phase of this prefab is spawned.
+            gameObject.SetActive(true);
         }
 
         private void Update()
@@ -20,7 +21,7 @@ namespace AlexzanderCowell
             if (currentTimeOfPlanting > startPlantTime + 2) // If the current time is more then + 2 in hours of when this was first spawn in then it will change to S2 Potato Stage.
             {
                 Instantiate(s2PotatoStage, transform.position, transform.rotation);
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }
