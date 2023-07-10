@@ -35,7 +35,8 @@ namespace AlexzanderCowell
                 SeedStorage.carrots += 1; // When collecting it will give you 1 carrot for your total carrot storage.
                 SeedStorage.carrotSeedOutput += 0.8f; // When collecting you will gain 0.8f per carrot you collect to go towards a carrot seed pool on the seed storage script.
                 Instantiate(dirtPatch, transform.position, newRotation); // Spawns in dirt prefab with the current transform.position with a rotation of the newRotation variable from above.
-                gameObject.SetActive(false); // Destroys S3 Carrot Stage Prefab in scene.
+                //gameObject.SetActive(false); // Destroys S3 Carrot Stage Prefab in scene.
+                Destroy(gameObject);
             }
  
             if (currentTimeOfPlanting > startPlantTime + 3) // If the current time is more then + 3 in hours of when this was first spawn in then it will change to being withered.

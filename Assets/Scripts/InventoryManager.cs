@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace AlexzanderCowell
 {
-    public class InvertoryManager : MonoBehaviour
+    public class InventoryManager : MonoBehaviour
     {
         [SerializeField] private GameObject selectedItem;
         [SerializeField] private Text selectedInInvertory;
@@ -22,6 +22,16 @@ namespace AlexzanderCowell
             if (Input.GetKeyDown(KeyCode.E) && Time.timeScale == 1)
             {
                 _selected += 1;
+            }
+
+            if (Input.mouseScrollDelta.y >= 0 && Time.timeScale == 1)
+            {
+                _selected += 1;
+            }
+
+            if (Input.mouseScrollDelta.y <= 0 && Time.timeScale == 1)
+            {
+                _selected -= 1;
             }
 
             if (_selected > 4)

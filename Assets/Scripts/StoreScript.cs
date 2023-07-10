@@ -5,7 +5,7 @@ namespace AlexzanderCowell
 {
     public class StoreScript : MonoBehaviour
     {
-        [SerializeField] private InvertoryManager invertoryM; // Invertory Manager Script.
+        [SerializeField] private InventoryManager invertoryM; // Inventory Manager Script.
         [SerializeField] private GameObject turnOnOrOffUI; // UI Text On Booth to be turned on or off for displaying for Selling & Buying.
         private bool insideOfStore; // Checks if player is in the store collision or not.
         private bool canSellCarrots,canSellPotatos,canBuyCSeeds,canBuyPSeeds; // Checks if can sell the certain vegetables/seeds related to what should be displayed.

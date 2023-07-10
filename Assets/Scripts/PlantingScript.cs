@@ -4,7 +4,7 @@ namespace AlexzanderCowell
 {
     public class PlantingScript : MonoBehaviour
     {
-        [SerializeField] private InvertoryManager invManager;
+        [SerializeField] private InventoryManager invManager;
 
         private string selectableDirtTag = "Dirt",
             selectableWitherdTag = "Withered";
