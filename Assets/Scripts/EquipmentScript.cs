@@ -1,24 +1,56 @@
+using System.Collections;
 using UnityEngine;
 
 namespace AlexzanderCowell
 {
     public class EquipmentScript : MonoBehaviour
     {
-        public static bool canPickUp;
+        [SerializeField] private GameObject playerCharacter;
 
-        private void OnTriggerStay(Collider other)
+        public static bool holdingEquipment = false;
+
+        private void Update()
         {
-            if (other.CompareTag("Player"))
+            if (holdingEquipment)
             {
-                canPickUp = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    holdingEquipment = false;
+                    StopCoroutine(HoldEquipment(this.gameObject));
+                }
             }
         }
-        
-        private void OnTriggerExit(Collider other)
+
+        private void OnCollisionStay(Collision collision)
         {
-            if (other.CompareTag("Player"))
+            if (collision.gameObject == playerCharacter)
             {
-                canPickUp = false;
+                Debug.Log("Collision with palyer");
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (!holdingEquipment)
+                    {
+                        holdingEquipment = true;
+                        this.gameObject.GetComponent<BoxCollider>().enabled = false;
+                        StartCoroutine(HoldEquipment(this.gameObject));
+                    }
+                    else
+                    {
+                        holdingEquipment = false;
+                        this.gameObject.GetComponent<BoxCollider>().enabled = true;
+                        StopCoroutine(HoldEquipment(this.gameObject));
+                    }
+                }
+            }
+        }
+
+        private IEnumerator HoldEquipment(GameObject equipment)
+        {
+            while (true)
+            {
+                equipment.transform.rotation = Quaternion.Euler(playerCharacter.transform.rotation.x, playerCharacter.transform.rotation.y, playerCharacter.transform.rotation.z);
+                equipment.transform.position = playerCharacter.GetComponent<CharacterMovementScript>().eqiupmentHoldPosition.transform.position;
+                yield return null;
             }
         }
     }

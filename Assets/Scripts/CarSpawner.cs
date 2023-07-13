@@ -80,6 +80,7 @@ public class CarSpawner : MonoBehaviour
         if (newCar.transform.position.x >= carRouteEndObject.transform.position.x) 
         { 
             // If it has reached the end, destroy it
+            StopCoroutine(MoveNewCar(newCar));
             Destroy(newCar);
         }
     }

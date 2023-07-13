@@ -70,7 +70,7 @@ namespace AlexzanderCowell
                             }
                     }
                     
-                    if (CharacterMovementScript.holdingShovel) 
+                    if (EquipmentScript.holdingEquipment) 
                     {
                         if (selectionHit.CompareTag(selectableWitherdTag) && selectionHit != null)
                         {

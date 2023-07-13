@@ -19,10 +19,8 @@ namespace AlexzanderCowell
         private float jumpHeight, characterGravity;
         [SerializeField] private float downValue, upValue;
         private Transform _cameraTransform;
-        [SerializeField] private GameObject shoveGameObject;
-        [SerializeField] private Transform moveItHere;
-        public static bool holdingShovel;
-        private int shovelState;
+
+        [SerializeField] public GameObject eqiupmentHoldPosition;
 
         private void Start()
         {
@@ -41,7 +39,6 @@ namespace AlexzanderCowell
         // Update is called once per frame
         void Update()
         {
-            Debug.Log(holdingShovel);
             _mouseXposition += mouseSensitivityX * Input.GetAxis("Mouse X"); // grabs the mouse X axis every frame for the rotation movement.
             _mouseYposition -= mouseSensitivityY * Input.GetAxis("Mouse Y"); // grabs the mouse Y axis every frame for the rotation movement.
             _moveHorizontal = Input.GetAxis("Horizontal"); // Gets the horizontal movement of the character.
@@ -55,26 +52,6 @@ namespace AlexzanderCowell
             Vector3 movement = new Vector3(_moveHorizontal, 0f, _moveVertical); // Allows the character to move forwards and backwards & left & right.
             movement = transform.TransformDirection(movement) * runSpeed; // Gives the character movement speed.
             controller.Move((movement + _moveDirection) * Time.deltaTime); // Gets all the movement variables and moves the character.
-
-            if (EquipmentScript.canPickUp)
-            {
-                if (Input.GetKeyDown(KeyCode.F))
-                {
-                    holdingShovel = true;
-                    shovelState += 1;
-
-                    if (shovelState > 1)
-                    {
-                        shovelState = 0;
-                        holdingShovel = false;
-                    }
-                }
-            }
-
-            if (shovelState == 1)
-            {
-                shoveGameObject.transform.position = moveItHere.position;
-            }
         }
 
         private void JumpMovement()
