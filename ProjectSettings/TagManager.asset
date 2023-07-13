@@ -10,6 +10,7 @@ TagManager:
   - Stage2
   - Stage3
   - Car
+  - Equipment
   layers:
   - Default
   - TransparentFX

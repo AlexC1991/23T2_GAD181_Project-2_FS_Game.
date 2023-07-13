@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace AlexzanderCowell
@@ -9,37 +10,33 @@ namespace AlexzanderCowell
 
         public static bool holdingEquipment = false;
 
+        public LayerMask mask;
+
         private void Update()
         {
-            if (holdingEquipment)
+            Debug.Log("holdingequipment = " + holdingEquipment);
+            if (holdingEquipment == false)
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                RaycastHit _hit = new RaycastHit();
+                if (Physics.Raycast(playerCharacter.transform.position, playerCharacter.transform.forward, out _hit, 10f))
                 {
-                    holdingEquipment = false;
-                    StopCoroutine(HoldEquipment(this.gameObject));
-                }
+                    if (_hit.transform.tag == "Equipment")
+                    {
+                        Debug.Log("the player is looking");
+                        if (Input.GetKeyDown(KeyCode.E))
+                        {
+                            holdingEquipment = true;
+                            StartCoroutine(HoldEquipment(this.gameObject));
+                        }
+                    }
+                } 
             }
-        }
-
-        private void OnCollisionStay(Collision collision)
-        {
-            if (collision.gameObject == playerCharacter)
+            else if (holdingEquipment == true)
             {
-                Debug.Log("Collision with palyer");
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    if (!holdingEquipment)
-                    {
-                        holdingEquipment = true;
-                        this.gameObject.GetComponent<BoxCollider>().enabled = false;
-                        StartCoroutine(HoldEquipment(this.gameObject));
-                    }
-                    else
-                    {
-                        holdingEquipment = false;
-                        this.gameObject.GetComponent<BoxCollider>().enabled = true;
-                        StopCoroutine(HoldEquipment(this.gameObject));
-                    }
+                    StopCoroutine(HoldEquipment(this.gameObject));
+                    holdingEquipment = false;
                 }
             }
         }
@@ -47,9 +44,12 @@ namespace AlexzanderCowell
         private IEnumerator HoldEquipment(GameObject equipment)
         {
             while (true)
-            {
-                equipment.transform.rotation = Quaternion.Euler(playerCharacter.transform.rotation.x, playerCharacter.transform.rotation.y, playerCharacter.transform.rotation.z);
-                equipment.transform.position = playerCharacter.GetComponent<CharacterMovementScript>().eqiupmentHoldPosition.transform.position;
+            {                
+                if (holdingEquipment == true)
+                {
+                    equipment.transform.rotation = Quaternion.Euler(playerCharacter.transform.rotation.x, playerCharacter.transform.rotation.y, playerCharacter.transform.rotation.z);
+                    equipment.transform.position = playerCharacter.GetComponent<CharacterMovementScript>().eqiupmentHoldPosition.transform.position;
+                }
                 yield return null;
             }
         }
