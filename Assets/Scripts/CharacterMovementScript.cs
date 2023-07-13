@@ -21,6 +21,7 @@ namespace AlexzanderCowell
         private Transform _cameraTransform;
 
         [SerializeField] public GameObject eqiupmentHoldPosition;
+        [SerializeField] public GameObject equipmentHoldDirection;
 
         private void Start()
         {
