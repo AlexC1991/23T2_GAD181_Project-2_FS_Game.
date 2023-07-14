@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CarSpawner : MonoBehaviour
@@ -19,15 +18,22 @@ public class CarSpawner : MonoBehaviour
     private float startDelay = 2f;
     private float spawnInterval;
     public float carSpawnIndex;
+    private float timeToDestroy;
+    private float originalTimeToDestroy;
+    [HideInInspector] public static bool finishedWithCar;
 
     // Plays at start
     private void Start()
     {
         // Sets the spawn position to that of the object attached to this script
         spawnPosition = this.transform.position;
-
+        //SpawnRandomCar();
         // Calls the SpawnRandomCar method with a delay of startDelay (=2)
         Invoke("SpawnRandomCar", startDelay);
+        
+        timeToDestroy = 1;
+        originalTimeToDestroy = timeToDestroy;
+        finishedWithCar = false;
     }
 
     // Updates every frame
@@ -38,6 +44,10 @@ public class CarSpawner : MonoBehaviour
 
         // Updates the spawning interval to a random number
         spawnInterval = Random.Range(1.5f, 4f);
+        
+        Debug.Log(timeToDestroy);
+        Debug.Log(finishedWithCar);
+        //timeToDestroy -= 0.3f * Time.deltaTime;
     }
 
     // Method used to spawn a new car
@@ -54,7 +64,7 @@ public class CarSpawner : MonoBehaviour
         StartCoroutine(coroutine);
 
         // Re-randomizes the car spawn interval and recalls this method
-        spawnInterval = Random.Range(1.5f, 4f);
+        spawnInterval = Random.Range(2f, 4f);
         Invoke("SpawnRandomCar", spawnInterval);
     }
 
@@ -79,9 +89,9 @@ public class CarSpawner : MonoBehaviour
         // Checking the X position of the new car against the X postition of the end object
         if (newCar.transform.position.x >= carRouteEndObject.transform.position.x) 
         { 
+            finishedWithCar = true;
             // If it has reached the end, destroy it
             StopCoroutine(MoveNewCar(newCar));
-            Destroy(newCar);
         }
     }
 }
