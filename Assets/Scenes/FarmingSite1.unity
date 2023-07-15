@@ -48325,14 +48325,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 794445157932326994, guid: 2343ffab7a0891046828882ce862202a, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 794445157932326994, guid: 2343ffab7a0891046828882ce862202a, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1608329313965245943, guid: 2343ffab7a0891046828882ce862202a, type: 3}
       propertyPath: m_Name
       value: Hammer
