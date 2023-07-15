@@ -8902,37 +8902,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8028046162584251215, guid: de886a2b04afe664a9ed6730c537d49d, type: 3}
   m_PrefabInstance: {fileID: 121179490}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &124182590
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 124182591}
-  m_Layer: 0
-  m_Name: EquipmentGoHere
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &124182591
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 124182590}
-  m_LocalRotation: {x: -0.70710576, y: -0, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: 1.139, y: 0.866, z: -0.207}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 425065200}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1001 &124779692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17840,7 +17809,7 @@ GameObject:
   - component: {fileID: 425065196}
   - component: {fileID: 425065201}
   - component: {fileID: 425065202}
-  - component: {fileID: 425065208}
+  - component: {fileID: 425065203}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -17943,7 +17912,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 963194228}
-  - {fileID: 124182591}
   - {fileID: 2069034626178259531}
   m_Father: {fileID: 0}
   m_RootOrder: 9
@@ -17965,7 +17933,7 @@ MonoBehaviour:
   runSpeed: 0
   downValue: -90
   upValue: 90
-  eqiupmentHoldPosition: {fileID: 124182590}
+  eqiupmentHoldPosition: {fileID: 0}
   equipmentShovel: {fileID: 0}
   equipmentHammer: {fileID: 3061914742906279100}
 --- !u!114 &425065202
@@ -17986,7 +17954,7 @@ MonoBehaviour:
   s1Potato: {fileID: 3567706061537090776, guid: 6208963e72c843e479262c13ae7a0766, type: 3}
   s1Carrots: {fileID: 7210767981655614128, guid: d3b47f80e73eb7c48859871d78f01c1e, type: 3}
   dirtPatch: {fileID: 5488316871085788877, guid: 2e492288759a88b49b326a43d9cb95d9, type: 3}
---- !u!114 &425065208
+--- !u!114 &425065203
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74630,7 +74598,7 @@ Transform:
   - {fileID: 677218385}
   - {fileID: 861982168}
   m_Father: {fileID: 425065200}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2393042600610598406
 Transform:

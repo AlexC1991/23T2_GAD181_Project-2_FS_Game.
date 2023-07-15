@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AlexzanderCowell
 {
-    public class PlantingScript : MonoBehaviour
+    public class PlantingScript2 : MonoBehaviour
     {
         [SerializeField] private InventoryManager invManager;
 
@@ -44,7 +44,7 @@ namespace AlexzanderCowell
                     {
                         _selectedRenderer = selectionHit.GetComponent<Renderer>();
 
-                            if (_selectedRenderer != null && EquipmentScript._holdingEquipment == false)
+                            if (_selectedRenderer != null && EquipmentScript2._holdingEquipment == false)
                             {
                                 _selectedRenderer.material = highLightedM;
 
@@ -72,7 +72,7 @@ namespace AlexzanderCowell
                             }
                     }
                     
-                    if (EquipmentScript._holdingEquipment && EquipmentScript._currentEquipment.transform.name == "Shovel") 
+                    if (EquipmentScript2._holdingEquipment && EquipmentScript2._currentEquipment.transform.name == "Shovel") 
                     {
                         if ((selectionHit.CompareTag(selectableWitherdTag) || selectionHit.CompareTag(selectableGrassTag)) && selectionHit != null)
                         {

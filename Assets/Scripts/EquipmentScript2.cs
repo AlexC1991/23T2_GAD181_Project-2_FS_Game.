@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AlexzanderCowell
 {
-    public class EquipmentScript : MonoBehaviour
+    public class EquipmentScript2 : MonoBehaviour
     {
         public static bool _holdingEquipment; // Says if Holding Equipment or Not.
         private RaycastHit _hit; // The End of the ray cast.
