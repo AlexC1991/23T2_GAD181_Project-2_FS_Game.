@@ -45,8 +45,8 @@ public class CarSpawner : MonoBehaviour
         // Updates the spawning interval to a random number
         spawnInterval = Random.Range(1.5f, 4f);
         
-        Debug.Log(timeToDestroy);
-        Debug.Log(finishedWithCar);
+        //Debug.Log(timeToDestroy);
+        //Debug.Log(finishedWithCar);
         //timeToDestroy -= 0.3f * Time.deltaTime;
     }
 

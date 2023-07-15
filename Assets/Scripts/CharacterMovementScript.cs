@@ -20,8 +20,11 @@ namespace AlexzanderCowell
         [SerializeField] private float downValue, upValue;
         private Transform _cameraTransform;
 
+        // Declaration of game objects for use in the Equipment script
+        [Header("Equipment Settings")]
         [SerializeField] public GameObject eqiupmentHoldPosition;
-        [SerializeField] public GameObject equipmentHoldDirection;
+        [SerializeField] public GameObject equipmentShovel;
+        [SerializeField] public GameObject equipmentHammer;
 
         private void Start()
         {

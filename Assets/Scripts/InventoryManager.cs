@@ -14,16 +14,6 @@ namespace AlexzanderCowell
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Q) && Time.timeScale == 1)
-            {
-                _selected -= 1;
-            }
-
-            if (Input.GetKeyDown(KeyCode.E) && Time.timeScale == 1)
-            {
-                _selected += 1;
-            }
-
             if (Input.mouseScrollDelta.y >= 0 && Time.timeScale == 1)
             {
                 _selected += 1;

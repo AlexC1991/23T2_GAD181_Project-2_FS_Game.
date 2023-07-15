@@ -11,6 +11,7 @@ TagManager:
   - Stage3
   - Car
   - Equipment
+  - Grass
   layers:
   - Default
   - TransparentFX

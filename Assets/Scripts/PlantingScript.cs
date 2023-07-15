@@ -7,6 +7,7 @@ namespace AlexzanderCowell
         [SerializeField] private InventoryManager invManager;
 
         private string selectableDirtTag = "Dirt",
+            selectableGrassTag = "Grass",
             selectableWitherdTag = "Withered";
             /*selectableStage1Tag = "Stage1",
             selectableStage2Tag = "Stage2",
@@ -42,7 +43,7 @@ namespace AlexzanderCowell
                     {
                         _selectedRenderer = selectionHit.GetComponent<Renderer>();
 
-                            if (_selectedRenderer != null)
+                            if (_selectedRenderer != null && EquipmentScript.holdingEquipment == false)
                             {
                                 _selectedRenderer.material = highLightedM;
 
@@ -70,9 +71,9 @@ namespace AlexzanderCowell
                             }
                     }
                     
-                    if (EquipmentScript.holdingEquipment) 
+                    if (EquipmentScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Shovel") 
                     {
-                        if (selectionHit.CompareTag(selectableWitherdTag) && selectionHit != null)
+                        if ((selectionHit.CompareTag(selectableWitherdTag) || selectionHit.CompareTag(selectableGrassTag)) && selectionHit != null)
                         {
                             _selectedRenderer = selectionHit.GetComponent<Renderer>();
                             
