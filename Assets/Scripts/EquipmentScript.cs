@@ -26,13 +26,7 @@ namespace AlexzanderCowell
 
         private void FixedUpdate()
         {
-            if (_selection != null) // If the selection is not equal to nothing.
-            {
-                _selectedRenderer = _selection.GetComponent<Renderer>(); // Selection Renderer will equal to the Renderer Component of the current selected.
-                _selectedRenderer.material = defaultMat; // Selected Renderer material will be default Material 
-                _selection = null; // selection is equal to nothing.
-            }
-
+            
             if (Camera.main != null) // If the main camera is not equal to Null
             {
                 var rayH = Camera.main.ScreenPointToRay(Input.mousePosition); // Uses the camera to point the ray using the mouse position in the game.
@@ -52,6 +46,13 @@ namespace AlexzanderCowell
             {
                 _currentEquipment.SetActive(true); // Current Equipment will be set active.
                 _canCollect = true; // Able to collect the game object.
+                if (_selection != null) // If the selection is not equal to nothing.
+                
+                {
+                    _selectedRenderer = _selection.GetComponent<Renderer>(); // Selection Renderer will equal to the Renderer Component of the current selected.
+                    _selectedRenderer.material = defaultMat; // Selected Renderer material will be default Material 
+                    _selection = null; // selection is equal to nothing.
+                }
             }
             
             if (_currentSelection != null) // If the current Selection is not equal to nothing.
