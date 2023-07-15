@@ -15,6 +15,7 @@ namespace AlexzanderCowell
         [SerializeField] private Material defaultMat; // Original Material which is StoreStuff in this script.
         private Transform _selection; // Same as the current Selection but is used for the renderer.
         private bool _canCollect; // Allows the character to use the equipment or not.
+        private GameObject shedVarient; // Gets the shedVarient and Turns it off & on.
 
 
         private void Start()
@@ -22,11 +23,11 @@ namespace AlexzanderCowell
             _eButtonInt = 0; // Button E Counter starts at 0;
             _currentEquipment = equipment; // currentEquipment is equipment game object as default.
             _holdingEquipment = true; // holding equipment is set to true for it to work currently.
+            shedVarient = GameObject.Find("Shed"); // Default the shed variant variable is set to just shed.
         }
 
         private void FixedUpdate()
         {
-            
             if (Camera.main != null) // If the main camera is not equal to Null
             {
                 var rayH = Camera.main.ScreenPointToRay(Input.mousePosition); // Uses the camera to point the ray using the mouse position in the game.
@@ -59,7 +60,7 @@ namespace AlexzanderCowell
             {
                 _selectedRenderer = _currentSelection.GetComponent<Renderer>(); // If the current Selection is not equal to nothing.
 
-                if (_currentSelection.transform.name == "Shovel") // If the currently selected name is called Shovel.
+                if (_currentSelection.transform.name == "ShedShovel") // If the currently selected name is called Shovel.
                 {
                     _selectedRenderer.material = highLightedM; // Change the material to the highlighted Material.
                     
@@ -68,6 +69,12 @@ namespace AlexzanderCowell
                         _holdingEquipment = true; // holding equipment is true.
                         _currentEquipment = equipment.transform.GetChild(0).gameObject; // current equipment will change to the first child of the equipment which is the Shovel.
                         _currentEquipment.SetActive(true); // The new current equipment which is the Shovel will be set to true.
+                        shedVarient.SetActive(true); // Turns on the shed Variant.
+                        shedVarient = GameObject.Find("ShedShovel"); // Sets shed Variant as shed shovel.
+                        if (shedVarient != null)
+                        {
+                            shedVarient.SetActive(false); // Turns off the shed Variant.
+                        }
                     }
                 }
 
@@ -78,7 +85,7 @@ namespace AlexzanderCowell
             {
                 _selectedRenderer = _currentSelection.GetComponent<Renderer>(); // If the current Selection is not equal to nothing.
                 
-                if (_currentSelection.transform.name == "Hammer") // If the currently selected name is called Hammer.
+                if (_currentSelection.transform.name == "ShedHammer") // If the currently selected name is called Hammer.
                 {
                     _selectedRenderer.material = highLightedM; // Change the material to the highlighted Material.
                     
@@ -87,6 +94,12 @@ namespace AlexzanderCowell
                         _holdingEquipment = true;  // holding equipment is true.
                         _currentEquipment = equipment.transform.GetChild(1).gameObject; // current equipment will change to the second child of the equipment which is the Hammer.
                         _currentEquipment.SetActive(true); // The new current equipment which is the Hammer will be set to true.
+                        shedVarient.SetActive(true); // Turns on the shed Variant.
+                        shedVarient = GameObject.Find("ShedHammer"); // Sets shed Variant as shed Hammer.
+                        if (shedVarient != null)
+                        {
+                            shedVarient.SetActive(false); // Turns off the shed Variant.
+                        }
                     }
                 }
                 
@@ -94,9 +107,6 @@ namespace AlexzanderCowell
             }
 
         }
-            
-        
-
         private void Update()
         {
             if (_eButtonInt >= 3) // If E Button Int Goes higher than 2 and will equal 3 or more it will reset back to 0.
@@ -111,6 +121,11 @@ namespace AlexzanderCowell
             }
             if (!_holdingEquipment) // If the Holding Equipment is false.
             {
+                if (shedVarient != null)
+                {
+                    shedVarient.SetActive(true); // Turns on the shed Variant.
+                }
+                _selection = _currentSelection; // Selected will not be null and will equal the currentSelected so will turn it back into the default material.
                 _currentEquipment.SetActive(false); // The set active will be false so it will not show anymore.
                 _currentEquipment = equipment; // current Equipment will reset and equal the equipment game object again.
             }

@@ -453,6 +453,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shovel
       objectReference: {fileID: 0}
+    - target: {fileID: 9031699675773146793, guid: 3cb538f5d211e8a4eaf84c03c43e6a60, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cb538f5d211e8a4eaf84c03c43e6a60, type: 3}
 --- !u!4 &357790905933557263 stripped
