@@ -19,6 +19,7 @@ namespace AlexzanderCowell
         [SerializeField] private Material highLightedM;
         [SerializeField] private Material defaultMat;
         private Transform spawnHere;
+        private Transform selectionHit;
         [SerializeField] private GameObject s1Potato;
         [SerializeField] private GameObject s1Carrots;
         [SerializeField] private GameObject dirtPatch;
@@ -37,13 +38,13 @@ namespace AlexzanderCowell
                 var rayH = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(rayH, out _hitIt))
                 {
-                    var selectionHit = _hitIt.transform;
+                    selectionHit = _hitIt.transform;
                     
                     if (selectionHit.CompareTag(selectableDirtTag) && selectionHit != null)
                     {
                         _selectedRenderer = selectionHit.GetComponent<Renderer>();
 
-                            if (_selectedRenderer != null && EquipmentScript.holdingEquipment == false)
+                            if (_selectedRenderer != null && EquipmentScript._holdingEquipment == false)
                             {
                                 _selectedRenderer.material = highLightedM;
 
@@ -71,7 +72,7 @@ namespace AlexzanderCowell
                             }
                     }
                     
-                    if (EquipmentScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Shovel") 
+                    if (EquipmentScript._holdingEquipment && EquipmentScript._currentEquipment.transform.name == "Shovel") 
                     {
                         if ((selectionHit.CompareTag(selectableWitherdTag) || selectionHit.CompareTag(selectableGrassTag)) && selectionHit != null)
                         {
