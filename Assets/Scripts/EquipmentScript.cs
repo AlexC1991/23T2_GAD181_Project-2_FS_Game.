@@ -98,7 +98,8 @@ namespace AlexzanderCowell
                     // Checks if the item was a shovel and if it was turn off the shovel
                     if (heldEquipmentName == "Shovel")
                     {
-                        playerCharacter.GetComponent<CharacterMovementScript>().equipmentShovel.SetActive(false);
+                        Debug.Log("shovel deactivatred");
+                        playerCharacter.GetComponent<CharacterMovementScript>().equipmentShovel.active = false;
                         heldEquipmentName = null;
                         StopCoroutine(HoldEquipment(hitEquipmentObject));
                         CharacterMovementScript.holdingEquipment = false;
@@ -106,7 +107,8 @@ namespace AlexzanderCowell
 
                     if (heldEquipmentName == "Hammer")
                     {
-                        playerCharacter.GetComponent<CharacterMovementScript>().equipmentHammer.SetActive(false);
+                        Debug.Log("hammer deactivatred");
+                        playerCharacter.GetComponent<CharacterMovementScript>().equipmentHammer.active = false;
                         heldEquipmentName = null;
                         StopCoroutine(HoldEquipment(hitEquipmentObject));
                         CharacterMovementScript.holdingEquipment = false;
