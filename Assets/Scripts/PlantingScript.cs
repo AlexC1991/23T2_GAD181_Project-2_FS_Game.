@@ -23,6 +23,8 @@ namespace AlexzanderCowell
         [SerializeField] private GameObject s1Carrots;
         [SerializeField] private GameObject dirtPatch;
 
+        [SerializeField] private GameObject fenceObject;
+
         private void FixedUpdate()
         {
             if (_selection != null)
@@ -43,7 +45,7 @@ namespace AlexzanderCowell
                     {
                         _selectedRenderer = selectionHit.GetComponent<Renderer>();
 
-                            if (_selectedRenderer != null && EquipmentScript.holdingEquipment == false)
+                            if (_selectedRenderer != null && CharacterMovementScript.holdingEquipment == false)
                             {
                                 _selectedRenderer.material = highLightedM;
 
@@ -71,7 +73,7 @@ namespace AlexzanderCowell
                             }
                     }
                     
-                    if (EquipmentScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Shovel") 
+                    if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Shovel") 
                     {
                         if ((selectionHit.CompareTag(selectableWitherdTag) || selectionHit.CompareTag(selectableGrassTag)) && selectionHit != null)
                         {
@@ -90,6 +92,23 @@ namespace AlexzanderCowell
                                 _selection = selectionHit;
                             }
                         }
+                    }
+
+                    if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Hammer")
+                    {
+                            _selectedRenderer = selectionHit.GetComponent<Renderer>();
+
+                            if (_selectedRenderer != null)
+                            {
+                                _selectedRenderer.material = highLightedM;
+                                if (Input.GetKeyDown(KeyCode.Mouse0))
+                                {
+                                    Vector3 xyz = new Vector3(-90, 0, 0);
+                                    Quaternion newRotation = Quaternion.Euler(xyz);
+                                    Instantiate(fenceObject, _hitIt.transform.position, newRotation);
+                                }
+                                _selection = selectionHit;
+                            }
                     }
                 }
             }

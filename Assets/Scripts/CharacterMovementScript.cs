@@ -22,6 +22,7 @@ namespace AlexzanderCowell
 
         // Declaration of game objects for use in the Equipment script
         [Header("Equipment Settings")]
+        public static bool holdingEquipment = false;
         [SerializeField] public GameObject eqiupmentHoldPosition;
         [SerializeField] public GameObject equipmentShovel;
         [SerializeField] public GameObject equipmentHammer;
