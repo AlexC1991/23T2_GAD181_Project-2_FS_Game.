@@ -76,6 +76,26 @@ namespace AlexzanderCowell
                     equipmentInstructionText.gameObject.SetActive(true);
                 }
 
+                if (heldEquipmentName == "Axe")
+                {
+                    playerCharacter.GetComponent<CharacterMovementScript>().equipmentAxe.SetActive(true);
+                    equipmentInstructionText.text = "HERES JHONNY!";
+                    equipmentInstructionText.gameObject.SetActive(true);
+                }
+
+                if (heldEquipmentName == "GardenSpade")
+                {
+                    playerCharacter.GetComponent<CharacterMovementScript>().equipmentSpade.SetActive(true);
+                    equipmentInstructionText.text = "This is David Spade.";
+                    equipmentInstructionText.gameObject.SetActive(true);
+                }
+
+                if (heldEquipmentName == "FishingRod")
+                {
+                    playerCharacter.GetComponent<CharacterMovementScript>().equipmentFishingRod.SetActive(true);
+                    equipmentInstructionText.text = "Nice day for fishing ain it?";
+                    equipmentInstructionText.gameObject.SetActive(true);
+                }
                 CheckEquipmentDrop();
 
                 yield return null;
@@ -91,28 +111,38 @@ namespace AlexzanderCowell
                 if (Input.GetKeyDown(KeyCode.E))
                 {
 
-                    // Checks if the item was a shovel and if it was turn off the shovel
+                    // The following if statements check what equipment was just dropped and turns the character holding it off
                     if (heldEquipmentName == "Shovel")
                     {
                         playerCharacter.GetComponent<CharacterMovementScript>().equipmentShovel.SetActive(false);
-                        heldEquipmentName = null;
-                        StopAllCoroutines();
-                        equipmentInstructionText.text = "";
-                        equipmentInstructionText.gameObject.SetActive(false);
-                        CharacterMovementScript.holdingEquipment = false;
                     }
 
                     if (heldEquipmentName == "Hammer")
                     {
                         playerCharacter.GetComponent<CharacterMovementScript>().equipmentHammer.SetActive(false);
-                        heldEquipmentName = null;
-                        StopAllCoroutines();
-                        equipmentInstructionText.text = "";
-                        equipmentInstructionText.gameObject.SetActive(false);
-                        CharacterMovementScript.holdingEquipment = false;
+                    }
+
+                    if (heldEquipmentName == "Axe")
+                    {
+                        playerCharacter.GetComponent<CharacterMovementScript>().equipmentAxe.SetActive(false);
+                    }
+
+                    if (heldEquipmentName == "GardenSpade")
+                    {
+                        playerCharacter.GetComponent<CharacterMovementScript>().equipmentSpade.SetActive(false);
+                    }
+
+                    if (heldEquipmentName == "FishingRod")
+                    {
+                        playerCharacter.GetComponent<CharacterMovementScript>().equipmentFishingRod.SetActive(false);
                     }
                     
-                    
+                    // Resets all of the variables for the equipment checking
+                    heldEquipmentName = null;
+                    StopAllCoroutines();
+                    equipmentInstructionText.text = "";
+                    equipmentInstructionText.gameObject.SetActive(false);
+                    CharacterMovementScript.holdingEquipment = false;
                 }
             }
         }

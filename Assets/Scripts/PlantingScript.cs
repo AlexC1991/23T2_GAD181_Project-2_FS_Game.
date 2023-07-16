@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AlexzanderCowell
 {
-    public class PlantingScript2 : MonoBehaviour
+    public class PlantingScript : MonoBehaviour
     {
         [SerializeField] private InventoryManager invManager;
 
@@ -19,10 +19,12 @@ namespace AlexzanderCowell
         [SerializeField] private Material highLightedM;
         [SerializeField] private Material defaultMat;
         private Transform spawnHere;
-        private Transform selectionHit;
         [SerializeField] private GameObject s1Potato;
         [SerializeField] private GameObject s1Carrots;
         [SerializeField] private GameObject dirtPatch;
+
+        [Header("Equipment based settings")]
+        [SerializeField] private GameObject fenceObject;
 
         private void FixedUpdate()
         {
@@ -38,13 +40,13 @@ namespace AlexzanderCowell
                 var rayH = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(rayH, out _hitIt))
                 {
-                    selectionHit = _hitIt.transform;
+                    var selectionHit = _hitIt.transform;
                     
                     if (selectionHit.CompareTag(selectableDirtTag) && selectionHit != null)
                     {
                         _selectedRenderer = selectionHit.GetComponent<Renderer>();
 
-                            if (_selectedRenderer != null && EquipmentScript2._holdingEquipment == false)
+                            if (_selectedRenderer != null && CharacterMovementScript.holdingEquipment == false)
                             {
                                 _selectedRenderer.material = highLightedM;
 
@@ -72,7 +74,7 @@ namespace AlexzanderCowell
                             }
                     }
                     
-                    if (EquipmentScript2._holdingEquipment && EquipmentScript2._currentEquipment.transform.name == "Shovel") 
+                    if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Shovel") 
                     {
                         if ((selectionHit.CompareTag(selectableWitherdTag) || selectionHit.CompareTag(selectableGrassTag)) && selectionHit != null)
                         {
@@ -91,6 +93,24 @@ namespace AlexzanderCowell
                                 _selection = selectionHit;
                             }
                         }
+                    }
+
+                    if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Hammer")
+                    {
+                            _selectedRenderer = selectionHit.GetComponent<Renderer>();
+
+                            if (_selectedRenderer != null)
+                            {
+                                _selectedRenderer.material = highLightedM;
+                                if (Input.GetKeyDown(KeyCode.Mouse0))
+                                {
+                                    Vector3 xyz = new Vector3(-90, 0, 0);
+                                Vector3 fenceSpawnPos = new Vector3(_hitIt.transform.position.x, 12.2f, _hitIt.transform.position.z);
+                                    Quaternion newRotation = Quaternion.Euler(xyz);
+                                    Instantiate(fenceObject, fenceSpawnPos, newRotation);
+                                }
+                                _selection = selectionHit;
+                            }
                     }
                 }
             }

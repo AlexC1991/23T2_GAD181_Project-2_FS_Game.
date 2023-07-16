@@ -26,6 +26,9 @@ namespace AlexzanderCowell
         [SerializeField] public GameObject eqiupmentHoldPosition;
         [SerializeField] public GameObject equipmentShovel;
         [SerializeField] public GameObject equipmentHammer;
+        [SerializeField] public GameObject equipmentAxe;
+        [SerializeField] public GameObject equipmentSpade;
+        [SerializeField] public GameObject equipmentFishingRod;
 
         private void Start()
         {
