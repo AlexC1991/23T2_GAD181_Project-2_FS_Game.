@@ -270,12 +270,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invManager: {fileID: 0}
-  highLightedM: {fileID: 0}
-  defaultMat: {fileID: 0}
-  s1Potato: {fileID: 0}
-  s1Carrots: {fileID: 0}
-  dirtPatch: {fileID: 0}
-  fenceObject: {fileID: 0}
+  highLightedM: {fileID: 2100000, guid: 9c5d082f53c20cb4e8f431f2941bcb54, type: 2}
+  defaultMat: {fileID: 2100000, guid: 41b0211d13c3fa54cac44905c0972ce8, type: 2}
+  s1Potato: {fileID: 3567706061537090776, guid: 6208963e72c843e479262c13ae7a0766, type: 3}
+  s1Carrots: {fileID: 7210767981655614128, guid: d3b47f80e73eb7c48859871d78f01c1e, type: 3}
+  dirtPatch: {fileID: 5488316871085788877, guid: 2e492288759a88b49b326a43d9cb95d9, type: 3}
 --- !u!1 &8991581982228204468
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +315,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4801088645955396124}
     m_Modifications:
+    - target: {fileID: 488583363, guid: 2343ffab7a0891046828882ce862202a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1608329313965245943, guid: 2343ffab7a0891046828882ce862202a, type: 3}
       propertyPath: m_Name
       value: Hammer
@@ -412,43 +415,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 754bafa14bba0d145ab831b9d7eb3939, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.908
+      value: -2.391
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 754bafa14bba0d145ab831b9d7eb3939, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.09
+      value: -2.972
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 754bafa14bba0d145ab831b9d7eb3939, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.933
+      value: -2.502
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 754bafa14bba0d145ab831b9d7eb3939, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.30655473
+      value: 0.32756373
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 754bafa14bba0d145ab831b9d7eb3939, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.44137025
+      value: -0.18545878
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 754bafa14bba0d145ab831b9d7eb3939, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.827327
+      value: -0.48926994
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 754bafa14bba0d145ab831b9d7eb3939, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.16354357
+      value: 0.7867159
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 754bafa14bba0d145ab831b9d7eb3939, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 40.416
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 754bafa14bba0d145ab831b9d7eb3939, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -139.337
+      value: -53.54
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 754bafa14bba0d145ab831b9d7eb3939, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 56.159
+      value: 113.75
       objectReference: {fileID: 0}
     - target: {fileID: -7601226680800833775, guid: 754bafa14bba0d145ab831b9d7eb3939, type: 3}
       propertyPath: m_Enabled
@@ -464,6 +467,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 754bafa14bba0d145ab831b9d7eb3939, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: 754bafa14bba0d145ab831b9d7eb3939, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7071182760956848314, guid: 754bafa14bba0d145ab831b9d7eb3939, type: 3}

@@ -10,6 +10,7 @@ namespace AlexzanderCowell
     {
         // Declaration of the playerCharacter game object
         [SerializeField] private GameObject playerCharacter;
+        [SerializeField] private Camera playerCamera;
 
         // Declaration of the bool to know if the character is holding an item already
         public static string heldEquipmentName;
@@ -17,7 +18,7 @@ namespace AlexzanderCowell
         public LayerMask mask;
 
         // Declaration of the text that shows on the UI when a tool is held
-        [SerializeField] private TMP_Text equipmentInstructionText; 
+        [SerializeField] private TMP_Text equipmentInstructionText;
 
         // Method updates frequently
         private void Update()
@@ -32,11 +33,11 @@ namespace AlexzanderCowell
             {
                 // Declaration of objects used in raycasting
                 RaycastHit _hit = new RaycastHit();
-                if (Physics.Raycast(playerCharacter.transform.position, playerCharacter.transform.forward, out _hit, 5f, mask))
+                if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out _hit, 5f))
                 {
                     // Checks if the object hit with the raycast is an equipment item
                     if (_hit.transform.tag == "Equipment")
-                    { 
+                    {
                         // Checks for the key press to pick it up
                         if (Input.GetKeyDown(KeyCode.E))
                         {
@@ -57,6 +58,7 @@ namespace AlexzanderCowell
         {
             while (true)
             {
+                Debug.Log("running hold equip routine");
                 heldEquipmentName = equipment.transform.name;
                 equipment.transform.position = playerCharacter.GetComponent<CharacterMovementScript>().eqiupmentHoldPosition.transform.position;
 
