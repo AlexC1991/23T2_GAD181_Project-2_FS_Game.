@@ -2,16 +2,16 @@ using UnityEngine;
 
 namespace AlexzanderCowell
 {
-    public class PlantingScript : MonoBehaviour
+    public class PlantingScript2 : MonoBehaviour
     {
         [SerializeField] private InventoryManager invManager;
 
         private string selectableDirtTag = "Dirt",
             selectableGrassTag = "Grass",
-            selectableWitherdTag = "Withered",
-            selectableStage1Tag = "Stage1",
+            selectableWitherdTag = "Withered";
+            /*selectableStage1Tag = "Stage1",
             selectableStage2Tag = "Stage2",
-            selectableStage3Tag = "Stage3";
+            selectableStage3Tag = "Stage3";*/
 
         private RaycastHit _hitIt;
         private Renderer _selectedRenderer;
@@ -19,11 +19,10 @@ namespace AlexzanderCowell
         [SerializeField] private Material highLightedM;
         [SerializeField] private Material defaultMat;
         private Transform spawnHere;
+        private Transform selectionHit;
         [SerializeField] private GameObject s1Potato;
         [SerializeField] private GameObject s1Carrots;
         [SerializeField] private GameObject dirtPatch;
-
-        [SerializeField] private GameObject fenceObject;
 
         private void FixedUpdate()
         {
@@ -39,13 +38,13 @@ namespace AlexzanderCowell
                 var rayH = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(rayH, out _hitIt))
                 {
-                    var selectionHit = _hitIt.transform;
+                    selectionHit = _hitIt.transform;
                     
                     if (selectionHit.CompareTag(selectableDirtTag) && selectionHit != null)
                     {
                         _selectedRenderer = selectionHit.GetComponent<Renderer>();
 
-                            if (_selectedRenderer != null && CharacterMovementScript.holdingEquipment == false)
+                            if (_selectedRenderer != null && EquipmentScript2._holdingEquipment == false)
                             {
                                 _selectedRenderer.material = highLightedM;
 
@@ -73,7 +72,7 @@ namespace AlexzanderCowell
                             }
                     }
                     
-                    if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Shovel") 
+                    if (EquipmentScript2._holdingEquipment && EquipmentScript2._currentEquipment.transform.name == "Shovel") 
                     {
                         if ((selectionHit.CompareTag(selectableWitherdTag) || selectionHit.CompareTag(selectableGrassTag)) && selectionHit != null)
                         {
@@ -92,23 +91,6 @@ namespace AlexzanderCowell
                                 _selection = selectionHit;
                             }
                         }
-                    }
-
-                    if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Hammer")
-                    {
-                            _selectedRenderer = selectionHit.GetComponent<Renderer>();
-
-                            if (_selectedRenderer != null)
-                            {
-                                _selectedRenderer.material = highLightedM;
-                                if (Input.GetKeyDown(KeyCode.Mouse0))
-                                {
-                                    Vector3 xyz = new Vector3(-90, 0, 0);
-                                    Quaternion newRotation = Quaternion.Euler(xyz);
-                                    Instantiate(fenceObject, _hitIt.transform.position, newRotation);
-                                }
-                                _selection = selectionHit;
-                            }
                     }
                 }
             }
