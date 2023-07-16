@@ -180,7 +180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.47
-  m_Text: Press C Here to Collect Potatos
+  m_Text: Press E Here to Collect Potatos
 --- !u!1001 &1137564942208724614
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -57,7 +57,7 @@ public class CarSpawner : MonoBehaviour
         int carSpawnIndex = Random.Range(0, carPrefabList.Count);
 
         // Instantiates a new car prefab from the list of cars
-        GameObject newCar = Instantiate(carPrefabList[carSpawnIndex], spawnPosition, this.transform.rotation, this.gameObject.transform);
+        GameObject newCar = Instantiate(carPrefabList[carSpawnIndex], spawnPosition, Quaternion.Euler(0,90,0), this.gameObject.transform);
 
         // Sets up the coroutine that moves the cars down a certain route
         coroutine = MoveNewCar(newCar);
@@ -75,7 +75,7 @@ public class CarSpawner : MonoBehaviour
         while (newCar.activeSelf == true)
         {
             // Moves the car and then calls the method that checks to see if it has reached the end
-            newCar.transform.Translate(0.1f, 0, 0);
+            newCar.transform.Translate(0, 0, 0.1f);
             CheckCarRoute(newCar);
             
             // To close the loop

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace AlexzanderCowell
 {
@@ -8,6 +9,10 @@ namespace AlexzanderCowell
         private float currentTimeOfPlanting; // Tracks time of what the world time is currently at.
         [SerializeField] private float startPlantTime; // Sets time of which the instance is initialized. 
         private float nextPlantStageTime;
+
+        [Header("Progress Bar Settings")]
+        [SerializeField] private Slider progressBar;
+        private float barValue;
 
         private void Start()
         {
@@ -31,6 +36,14 @@ namespace AlexzanderCowell
                 Instantiate(s2PotatoStage, transform.position, transform.rotation);
                 gameObject.SetActive(false);
             }
+
+            UpdateProgressBar();
+        }
+
+        private void UpdateProgressBar()
+        {
+            barValue += progressBar.minValue + (Time.deltaTime * WorldClock.timeMultiplier * 0.00027f);
+            progressBar.value = barValue;
         }
     }
 }

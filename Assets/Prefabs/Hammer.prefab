@@ -102,22 +102,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1908009195163777045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1608329313965245943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f59b9a474995e5d41ba4c3225d325c0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCharacter: {fileID: 0}
-  mask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!136 &488583363
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -132,3 +116,21 @@ CapsuleCollider:
   m_Height: 5.722306
   m_Direction: 2
   m_Center: {x: -0.052939586, y: 0.023178326, z: -1.4357816}
+--- !u!114 &1718231853928891789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608329313965245943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbc07a96a5c0514a81eec18ec8b6273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCharacter: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
+  equipmentInstructionText: {fileID: 0}
+  highlightMaterial: {fileID: 2100000, guid: 9c5d082f53c20cb4e8f431f2941bcb54, type: 2}

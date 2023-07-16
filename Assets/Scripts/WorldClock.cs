@@ -7,8 +7,8 @@ namespace AlexzanderCowell
     {
         public static float hourTime;
         private float minuteTime;
-        private float secondsTime;
-        private float timeMultiplier;
+        public static float secondsTime;
+        public static float timeMultiplier;
         
 
         [Header("Scripts")] 

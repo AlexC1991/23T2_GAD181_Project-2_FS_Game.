@@ -180,7 +180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.47
-  m_Text: Press C Here to Collect Potatos
+  m_Text: Press E Here to Collect Potatos
 --- !u!1001 &5235125846434615446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -243,6 +243,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a8ebee0a194d3684e8ce8a5de5dbaf01, type: 3}
   m_PrefabInstance: {fileID: 5235125846434615446}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &2957060909406586466
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4929065450894962119}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 0.85, z: 3.6}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6761787255647641855
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -271,19 +284,6 @@ MonoBehaviour:
   dirtPatch: {fileID: 5488316871085788877, guid: 2e492288759a88b49b326a43d9cb95d9, type: 3}
   witheredPatch: {fileID: 1070056361915975082, guid: 651ac39042eed5944b270e0014429f10, type: 3}
   displayText: {fileID: 4447720278994770822}
---- !u!65 &2957060909406586466
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4929065450894962119}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4, y: 0.85, z: 3.6}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &5705038478711912317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a8ebee0a194d3684e8ce8a5de5dbaf01, type: 3}

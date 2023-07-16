@@ -22,7 +22,6 @@ namespace AlexzanderCowell
             gameObject.SetActive(true);
 
             progressBar.maxValue = nextPlantStageTime - startPlantTime;
-            StartCoroutine("ProgressBar");
         }
         private void Update()
         {
@@ -36,29 +35,15 @@ namespace AlexzanderCowell
             if (currentTimeOfPlanting > nextPlantStageTime) // If the current time is more then + 2 in hours of when this was first spawn in then it will change to S2 Carrot Stage.
             {
                 Instantiate(s2CarrotStage, transform.position, transform.rotation);
-                //gameObject.SetActive(false);
                 Destroy(gameObject);
             }
-        }
 
-        private IEnumerator ProgressBar()
-        {
-            while (true)
-            {
-                while (barValue <= progressBar.maxValue)
-                {
-                    barValue = nextPlantStageTime - currentTimeOfPlanting * 0.01f;
-                    UpdateProgressBar();
-
-                    yield return null;
-                }
-                
-                yield return null;
-            }
+            UpdateProgressBar();
         }
 
         private void UpdateProgressBar()
         {
+            barValue += progressBar.minValue + (Time.deltaTime * WorldClock.timeMultiplier * 0.00027f);
             progressBar.value = barValue;
         }
     }
