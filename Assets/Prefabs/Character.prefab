@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6779699371017147686}
   m_LocalRotation: {x: 0.060337592, y: -0.22090007, z: 0.018712383, w: 0.97324836}
-  m_LocalPosition: {x: 0.16, y: 0.88, z: 0.15}
+  m_LocalPosition: {x: -0.097, y: 0.803, z: 0.616}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -58,7 +58,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 102.6
-  field of view: 69
+  field of view: 79.8
   orthographic: 0
   orthographic size: 5
   m_Depth: 26.1
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivityY: 0
   mouseSensitivityX: 0
-  runSpeed: 0
+  runSpeed: 1
   downValue: -90
   upValue: 90
   eqiupmentHoldPosition: {fileID: 6779699371385903209}
