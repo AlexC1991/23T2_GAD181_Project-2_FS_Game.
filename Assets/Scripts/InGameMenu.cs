@@ -12,11 +12,15 @@ namespace AlexzanderCowell
         [SerializeField] private CharacterMovementScript cMoveScript; // Character Movement Script.
         private int escState; // Int Counter For ESC Button.
 
+        [SerializeField] private GameObject controlsScreen;
+        private bool viewingControlScreen;
 
         private void Start()
         {
             _InGameMenuUI.SetActive(false); // In Game UI Starts False.
             LowMouseSensitivity(); // Low Mouse Sensitivity Open Selected At Start.
+
+            viewingControlScreen = false;
         }
 
         private void Update()
@@ -72,6 +76,19 @@ namespace AlexzanderCowell
             _lowMouseSensitiveIndicator.SetActive(true); // Turns on the Low Mouse Sensitivity Indicator.
             _medMouseSensitiveIndicator.SetActive(false); // Turns off the Medium Mouse Sensitivity Indicator.
             _highMouseSensitiveIndicator.SetActive(false); // Turns off the High Mouse Sensitivity Indicator.
+        }
+
+        public void ToggleControls()
+        {
+            if (viewingControlScreen == true)
+            {
+                controlsScreen.SetActive(false);
+            }
+            
+            if (viewingControlScreen == false)
+            {
+                controlsScreen.SetActive(true);
+            }
         }
     }
 }

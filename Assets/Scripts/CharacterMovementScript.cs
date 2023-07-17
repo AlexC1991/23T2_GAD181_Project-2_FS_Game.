@@ -37,7 +37,7 @@ namespace AlexzanderCowell
             jumpHeight = 2;
             mouseSensitivityY = 0.7f;
             mouseSensitivityX = 1;
-            runSpeed = 6;
+            runSpeed = 9;
             _playerIsJumping = false;
             characterGravity = 25;
             Cursor.lockState = CursorLockMode.Locked;
