@@ -18,7 +18,7 @@ namespace AlexzanderCowell
             
             costDisplay.text = ("Lets Trade!"); // Default message for the cost display text to say.
             costTotalCarrots = 2; // How much Carrots cost.
-            costTotalPotatos = 1; // How much Potato's cost
+            costTotalPotatos = 1; // How much Potato's cost.
             costTotalPSeeds = 1; // How much Potato Seeds cost.
             costTotalCSeeds = 3; // How much Carrot Seeds cost.
             
@@ -78,28 +78,28 @@ namespace AlexzanderCowell
                 canSellPotatos = false; // If any is null you can not sell Potato's.
             }
 
-            if (canSellCarrots && Input.GetKeyDown(KeyCode.X) && insideOfStore) // If Can sell Carrots are true & you are still inside of the store and you press X button.
+            if (canSellCarrots && Input.GetKeyDown(KeyCode.E) && insideOfStore) // If Can sell Carrots are true & you are still inside of the store and you press X button.
             {
                 MoneyScript.moneyTotal += costTotalCarrots; // Will add the cost of the Carrots to the money total.
                 SeedStorage.carrots -= 1; // Will remove 1 carrot from the seed storage script.
                 canSellCarrots = false; // Turns off Can Sell Carrots so it does not continuously loop.
             }
 
-            if (canSellPotatos && Input.GetKeyDown(KeyCode.X) && insideOfStore) // If Can sell Potatos are true & you are still inside of the store and you press X button.
+            if (canSellPotatos && Input.GetKeyDown(KeyCode.E) && insideOfStore) // If Can sell Potatos are true & you are still inside of the store and you press X button.
             {
                 MoneyScript.moneyTotal += costTotalPotatos; // Will add the cost of the Potato's to the money total.
                 SeedStorage.potatos -= 1; // Will remove 1 potato from the seed storage script.
                 canSellPotatos = false; // Turns off Can Sell Potato's so it does not continuously loop.
             }
 
-            if (canBuyPSeeds && Input.GetKeyDown(KeyCode.X) && insideOfStore) // If can buy Potato Seeds are true & you are still inside of the store and you press X button.
+            if (canBuyPSeeds && Input.GetKeyDown(KeyCode.E) && insideOfStore) // If can buy Potato Seeds are true & you are still inside of the store and you press X button.
             {
                 MoneyScript.moneyTotal -= costTotalPSeeds; // Will minus the cost of the Potato Seeds from the money total.
                 SeedStorage.potatoSeed += 1; // Will add 1 potato seed from the seed storage script.
                 canBuyPSeeds = false; // Turns off Can buy Potato Seeds so it does not continuously loop.
             }
 
-            if (canBuyCSeeds && Input.GetKeyDown(KeyCode.X) && insideOfStore) // If can buy Carrot Seeds are true & you are still inside of the store and you press X button.
+            if (canBuyCSeeds && Input.GetKeyDown(KeyCode.E) && insideOfStore) // If can buy Carrot Seeds are true & you are still inside of the store and you press X button.
             {
                 MoneyScript.moneyTotal -= costTotalCSeeds; // Will minus the cost of the Carrot Seeds from the money total.
                 SeedStorage.carrotSeed += 1; // Will add 1 carrot seed from the seed storage script.
@@ -131,6 +131,7 @@ namespace AlexzanderCowell
             if (other.CompareTag("Player")) // If the player is not inside of the collider then the UI will be turned off for the text.
             {
                 turnOnOrOffUI.SetActive(false);
+                insideOfStore = false;
             }
 
         }
