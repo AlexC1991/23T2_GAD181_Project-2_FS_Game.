@@ -30,6 +30,12 @@ namespace AlexzanderCowell
         [SerializeField] public GameObject equipmentSpade;
         [SerializeField] public GameObject equipmentFishingRod;
 
+        //Declaration of the Audio source for SFX
+        [Header("SFX Based Settings")]
+        [SerializeField] private AudioSource characterSFXSource;
+        [SerializeField] private AudioClip footstepSFX;
+        private bool footstepAudioPlaying = false;
+
         private void Start()
         {
             _cameraTransform = Camera.main.transform;
@@ -37,7 +43,7 @@ namespace AlexzanderCowell
             jumpHeight = 2;
             mouseSensitivityY = 0.7f;
             mouseSensitivityX = 1;
-            runSpeed = 9;
+            runSpeed = 9f;
             _playerIsJumping = false;
             characterGravity = 25;
             Cursor.lockState = CursorLockMode.Locked;
@@ -60,6 +66,8 @@ namespace AlexzanderCowell
             Vector3 movement = new Vector3(_moveHorizontal, 0f, _moveVertical); // Allows the character to move forwards and backwards & left & right.
             movement = transform.TransformDirection(movement) * runSpeed; // Gives the character movement speed.
             controller.Move((movement + _moveDirection) * Time.deltaTime); // Gets all the movement variables and moves the character.
+
+            FootstepSFX();
         }
 
         private void JumpMovement()
@@ -73,6 +81,21 @@ namespace AlexzanderCowell
             if (controller.isGrounded) return;
             _moveDirection.y -= characterGravity * Time.deltaTime;
             _playerIsJumping = false;
+        }
+
+        // Method that plays the footstep sfx when moving
+        private void FootstepSFX()
+        {
+            if ((_moveVertical != 0f || _moveHorizontal != 0f) && footstepAudioPlaying == false)
+            {
+                characterSFXSource.PlayOneShot(footstepSFX);
+                footstepAudioPlaying = true;
+            }
+            else
+            {
+                characterSFXSource.Stop();
+                footstepAudioPlaying = false;
+            }
         }
     }
 }

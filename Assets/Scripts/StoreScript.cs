@@ -12,6 +12,11 @@ namespace AlexzanderCowell
         [SerializeField] private Text costDisplay; // Displays the text on the booth as to what it should be saying when activated. 
         private int costTotalCarrots, costTotalPotatos, costTotalPSeeds, costTotalCSeeds; // How much each vegetable/seeds cost.
 
+        // Declaration of the variables needed to play the buys sound effects
+        [SerializeField] private AudioSource sfxSource;
+        [SerializeField] private AudioClip buySFX;
+        [SerializeField] private AudioClip sellSFX;
+
         private void Start()
         {
             turnOnOrOffUI.SetActive(false); // Start of the game the UI will be turned off for the booth.
@@ -40,7 +45,7 @@ namespace AlexzanderCowell
         {
             if (invertoryM._selected == 1 && insideOfStore && MoneyScript.moneyTotal >= costTotalCSeeds) // If the Invertory is selected is equal to 1 & you are inside of the store & you have enough money that is more or equal to the cost of the seeds.
             {
-                costDisplay.text = ("Costs: $" + costTotalCSeeds + " Press X To Buy"); // You will see the cost of the Carrot Seeds and Prompted to press X to buy.
+                costDisplay.text = ("Costs: $" + costTotalCSeeds + " Press E To Buy"); // You will see the cost of the Carrot Seeds and Prompted to press X to buy.
                 canBuyCSeeds = true; // Allowed to buy Carrot seeds.
             }
             else
@@ -50,7 +55,7 @@ namespace AlexzanderCowell
 
             if (invertoryM._selected == 2 && insideOfStore && MoneyScript.moneyTotal >= costTotalPSeeds) // If the Invertory is selected is equal to 2 & you are inside of the store & you have enough money that is more or equal to the cost of the seeds.
             {
-                costDisplay.text = ("Costs: $" + costTotalPSeeds + " Press X To Buy"); // You will see the cost of the Potato Seeds and Prompted to press X to buy.
+                costDisplay.text = ("Costs: $" + costTotalPSeeds + " Press E To Buy"); // You will see the cost of the Potato Seeds and Prompted to press X to buy.
                 canBuyPSeeds = true; // Allowed to buy Potato seeds.
             }
             else
@@ -60,7 +65,7 @@ namespace AlexzanderCowell
 
             if (invertoryM._selected == 3 && insideOfStore && SeedStorage.carrots >= 1) // If the Invertory is selected is equal to 3 & you are inside of the store & you have more or equal to 1 of the carrots in your invertory you can sell them.
             {
-                costDisplay.text = ("You Get: $" + costTotalCarrots + " Press X To Sell"); // You will see the cost of the Carrots and Prompted to press X to sell.
+                costDisplay.text = ("You Get: $" + costTotalCarrots + " Press E To Sell"); // You will see the cost of the Carrots and Prompted to press X to sell.
                 canSellCarrots = true; // Allowed to sell the Carrots.
             }
             else
@@ -70,7 +75,7 @@ namespace AlexzanderCowell
 
             if (invertoryM._selected == 4 && insideOfStore && SeedStorage.potatos >= 1) // If the Invertory is selected is equal to 4 & you are inside of the store & you have more or equal to 1 of the potato's in your invertory you can sell them.
             {
-                costDisplay.text = ("You Get: $" + costTotalPotatos + " Press X To Sell"); // You will see the cost of the Potato's and Prompted to press X to sell.
+                costDisplay.text = ("You Get: $" + costTotalPotatos + " Press E To Sell"); // You will see the cost of the Potato's and Prompted to press X to sell.
                 canSellPotatos = true; // Allowed to sell the Potato's.
             }
             else
@@ -83,6 +88,9 @@ namespace AlexzanderCowell
                 MoneyScript.moneyTotal += costTotalCarrots; // Will add the cost of the Carrots to the money total.
                 SeedStorage.carrots -= 1; // Will remove 1 carrot from the seed storage script.
                 canSellCarrots = false; // Turns off Can Sell Carrots so it does not continuously loop.
+
+                // Plays the sellSFX sound effect
+                sfxSource.PlayOneShot(sellSFX);
             }
 
             if (canSellPotatos && Input.GetKeyDown(KeyCode.E) && insideOfStore) // If Can sell Potatos are true & you are still inside of the store and you press X button.
@@ -90,6 +98,9 @@ namespace AlexzanderCowell
                 MoneyScript.moneyTotal += costTotalPotatos; // Will add the cost of the Potato's to the money total.
                 SeedStorage.potatos -= 1; // Will remove 1 potato from the seed storage script.
                 canSellPotatos = false; // Turns off Can Sell Potato's so it does not continuously loop.
+
+                // Plays the sellSFX sound effect
+                sfxSource.PlayOneShot(sellSFX);
             }
 
             if (canBuyPSeeds && Input.GetKeyDown(KeyCode.E) && insideOfStore) // If can buy Potato Seeds are true & you are still inside of the store and you press X button.
@@ -97,6 +108,9 @@ namespace AlexzanderCowell
                 MoneyScript.moneyTotal -= costTotalPSeeds; // Will minus the cost of the Potato Seeds from the money total.
                 SeedStorage.potatoSeed += 1; // Will add 1 potato seed from the seed storage script.
                 canBuyPSeeds = false; // Turns off Can buy Potato Seeds so it does not continuously loop.
+
+                // Plays the buySFX sound effect
+                sfxSource.PlayOneShot(buySFX);
             }
 
             if (canBuyCSeeds && Input.GetKeyDown(KeyCode.E) && insideOfStore) // If can buy Carrot Seeds are true & you are still inside of the store and you press X button.
@@ -104,6 +118,9 @@ namespace AlexzanderCowell
                 MoneyScript.moneyTotal -= costTotalCSeeds; // Will minus the cost of the Carrot Seeds from the money total.
                 SeedStorage.carrotSeed += 1; // Will add 1 carrot seed from the seed storage script.
                 canBuyCSeeds = false; // Turns off Can buy Carrot Seeds so it does not continuously loop.
+
+                // Plays the buySFX sound effect
+                sfxSource.PlayOneShot(buySFX);
             }
 
             if (invertoryM._selected == 4 && insideOfStore && SeedStorage.potatos == 0) // If the Invertory is selected is equal to 4 & you are inside of the store & you have 0 of the potato's in your invertory you have nothing to sell.

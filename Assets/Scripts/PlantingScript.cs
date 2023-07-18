@@ -23,7 +23,12 @@ namespace AlexzanderCowell
         [SerializeField] private GameObject s1Carrots;
         [SerializeField] private GameObject dirtPatch;
 
-        [Header("Equipment based settings")]
+        [Header("SFX Based Settings")]
+        [SerializeField] private AudioSource characterSFXSource;
+        [SerializeField] private AudioClip plantingSFX;
+        [SerializeField] private AudioClip hammerSFX;
+
+        [Header("Equipment Based Settings")]
         [SerializeField] private GameObject fenceObject;
 
         private void FixedUpdate()
@@ -46,32 +51,34 @@ namespace AlexzanderCowell
                     {
                         _selectedRenderer = selectionHit.GetComponent<Renderer>();
 
-                            if (_selectedRenderer != null && CharacterMovementScript.holdingEquipment == false)
+                        if (_selectedRenderer != null && CharacterMovementScript.holdingEquipment == false)
+                        {
+                            _selectedRenderer.material = highLightedM;
+
+                            if (SeedStorage.potatoSeed > 0 && (invManager._selected == 2))
                             {
-                                _selectedRenderer.material = highLightedM;
-
-                                if (SeedStorage.potatoSeed > 0 && (invManager._selected == 2))
+                                if (Input.GetKeyDown(KeyCode.Mouse0))
                                 {
-                                    if (Input.GetKeyDown(KeyCode.Mouse0))
-                                    {
-                                        Destroy(_hitIt.transform.gameObject);
-                                        Instantiate(s1Potato, _hitIt.transform.position, Quaternion.identity);
-                                        SeedStorage.potatoSeed -= 1;
-                                    }
+                                    Destroy(_hitIt.transform.gameObject);
+                                    Instantiate(s1Potato, _hitIt.transform.position, Quaternion.identity);
+                                    characterSFXSource.PlayOneShot(plantingSFX);
+                                    SeedStorage.potatoSeed -= 1;
                                 }
-
-                                if (SeedStorage.carrotSeed > 0 && (invManager._selected == 1))
-                                {
-                                    if (Input.GetKeyDown(KeyCode.Mouse0))
-                                    {
-                                        Destroy(_hitIt.transform.gameObject);
-                                        Instantiate(s1Carrots, _hitIt.transform.position, Quaternion.identity);
-                                        SeedStorage.carrotSeed -= 1;
-                                    }
-                                }
-
-                                _selection = selectionHit;
                             }
+
+                            if (SeedStorage.carrotSeed > 0 && (invManager._selected == 1))
+                            {
+                                if (Input.GetKeyDown(KeyCode.Mouse0))
+                                {
+                                    Destroy(_hitIt.transform.gameObject);
+                                    Instantiate(s1Carrots, _hitIt.transform.position, Quaternion.identity);
+                                    characterSFXSource.PlayOneShot(plantingSFX);
+                                    SeedStorage.carrotSeed -= 1;
+                                }
+                            }
+
+                            _selection = selectionHit;
+                        }
                     }
                     
                     if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Shovel") 
@@ -88,6 +95,7 @@ namespace AlexzanderCowell
                                     Vector3 xyz = new Vector3(-90, 0, 0);
                                     Quaternion newRotation = Quaternion.Euler(xyz);
                                     Instantiate(dirtPatch, _hitIt.transform.position, newRotation);
+                                    characterSFXSource.PlayOneShot(plantingSFX);
                                     Destroy(_hitIt.transform.gameObject);
                                 }
                                 _selection = selectionHit;
@@ -97,20 +105,22 @@ namespace AlexzanderCowell
 
                     if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Hammer")
                     {
-                            _selectedRenderer = selectionHit.GetComponent<Renderer>();
+                        _selectedRenderer = selectionHit.GetComponent<Renderer>();
 
-                            if (_selectedRenderer != null)
+                        if (_selectedRenderer != null)
+                        {
+                            _selectedRenderer.material = highLightedM;
+                            if (Input.GetKeyDown(KeyCode.Mouse0))
                             {
-                                _selectedRenderer.material = highLightedM;
-                                if (Input.GetKeyDown(KeyCode.Mouse0))
-                                {
-                                    Vector3 xyz = new Vector3(-90, 0, 0);
+                                Vector3 xyz = new Vector3(-90, 0, 0);
                                 Vector3 fenceSpawnPos = new Vector3(_hitIt.transform.position.x, 12.2f, _hitIt.transform.position.z);
-                                    Quaternion newRotation = Quaternion.Euler(xyz);
-                                    Instantiate(fenceObject, fenceSpawnPos, newRotation);
-                                }
-                                _selection = selectionHit;
+                                Quaternion newRotation = Quaternion.Euler(xyz);
+
+                                Instantiate(fenceObject, fenceSpawnPos, newRotation);
+                                characterSFXSource.PlayOneShot(hammerSFX);
                             }
+                            _selection = selectionHit;
+                        }
                     }
                 }
             }
