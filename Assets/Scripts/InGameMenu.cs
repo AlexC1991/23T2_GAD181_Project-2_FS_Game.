@@ -12,7 +12,9 @@ namespace AlexzanderCowell
         [SerializeField] private CharacterMovementScript cMoveScript; // Character Movement Script.
         private int escState; // Int Counter For ESC Button.
 
+        // Declarartion of the variables needed for the in game controls screen
         [SerializeField] private GameObject controlsScreen;
+        [SerializeField] private GameObject uiScreenMaster;
         private bool viewingControlScreen;
 
         private void Start()
@@ -48,6 +50,10 @@ namespace AlexzanderCowell
                 Time.timeScale = 1; // Sets Game Speed To Normal Speed.
                 Cursor.lockState = CursorLockMode.Locked; // Confines the Curser on the Screen and locks it in place.
                 Cursor.visible = false; // Stops the Cursor being displayed in game.
+
+                controlsScreen.SetActive(false);
+                uiScreenMaster.SetActive(true);
+                _InGameMenuUI.SetActive(false);
             }
         }
 
@@ -83,11 +89,18 @@ namespace AlexzanderCowell
             if (viewingControlScreen == true)
             {
                 controlsScreen.SetActive(false);
+                uiScreenMaster.SetActive(true);
+                _InGameMenuUI.SetActive(false);
+
+                viewingControlScreen = false;
             }
-            
-            if (viewingControlScreen == false)
+            else if (viewingControlScreen == false)
             {
                 controlsScreen.SetActive(true);
+                uiScreenMaster.SetActive(false);
+                _InGameMenuUI.SetActive(false);
+
+                viewingControlScreen = true;
             }
         }
     }
