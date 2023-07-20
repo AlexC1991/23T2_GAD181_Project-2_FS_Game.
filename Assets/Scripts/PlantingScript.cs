@@ -1,4 +1,7 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace AlexzanderCowell
 {
@@ -6,30 +9,47 @@ namespace AlexzanderCowell
     {
         [SerializeField] private InventoryManager invManager;
 
-        private string selectableDirtTag = "Dirt",
-            selectableGrassTag = "Grass",
-            selectableWitherdTag = "Withered";
-            /*selectableStage1Tag = "Stage1",
-            selectableStage2Tag = "Stage2",
-            selectableStage3Tag = "Stage3";*/
+        private readonly string _selectableDirtTag = "Dirt";
+
+        private readonly string _selectableGrassTag = "Grass";
+
+        private readonly string _selectableWitheredTag = "Withered";
+
+        private readonly string _selectableFenceTag = "Fence";
+
+        private readonly string _selectableTreeTag = "Tree";
 
         private RaycastHit _hitIt;
         private Renderer _selectedRenderer;
         private Transform _selection;
         [SerializeField] private Material highLightedM;
         [SerializeField] private Material defaultMat;
-        private Transform spawnHere;
+        private Transform _spawnHere;
         [SerializeField] private GameObject s1Potato;
         [SerializeField] private GameObject s1Carrots;
         [SerializeField] private GameObject dirtPatch;
 
+        [FormerlySerializedAs("characterSFXSource")]
         [Header("SFX Based Settings")]
-        [SerializeField] private AudioSource characterSFXSource;
-        [SerializeField] private AudioClip plantingSFX;
-        [SerializeField] private AudioClip hammerSFX;
+        [SerializeField] private AudioSource characterSfxSource;
+        [SerializeField] private AudioClip plantingSfx;
+        [SerializeField] private AudioClip hammerSfx;
 
         [Header("Equipment Based Settings")]
         [SerializeField] private GameObject fenceObject;
+        [SerializeField] private GameObject axeObject;
+        private bool _canChopTree;
+        private float _choppingTreeTime;
+        private float _choppingTreeTimeOriginal;
+        [SerializeField] private GameObject _ChoppingTimer;
+
+        private void Start()
+        {
+            _ChoppingTimer.SetActive(false);
+            axeObject.GetComponent<Animator>().enabled = false;
+            _choppingTreeTime = 5;
+            _choppingTreeTimeOriginal = _choppingTreeTime;
+        }
 
         private void FixedUpdate()
         {
@@ -43,15 +63,16 @@ namespace AlexzanderCowell
             if (Camera.main != null)
             {
                 var rayH = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(rayH, out _hitIt))
+                if (Physics.Raycast(rayH, out _hitIt, 6f))
                 {
                     var selectionHit = _hitIt.transform;
                     
-                    if (selectionHit.CompareTag(selectableDirtTag) && selectionHit != null)
+                    if (selectionHit.CompareTag(_selectableDirtTag) && selectionHit != null)
                     {
                         _selectedRenderer = selectionHit.GetComponent<Renderer>();
 
-                        if (_selectedRenderer != null && CharacterMovementScript.holdingEquipment == false)
+                        if (_selectedRenderer != null && EquipmentScript.heldEquipmentName == "GardenSpade" && 
+                            (SeedStorage.potatoSeed > 0 && (invManager._selected == 2) || (SeedStorage.carrotSeed > 0 && (invManager._selected == 1))))
                         {
                             _selectedRenderer.material = highLightedM;
 
@@ -61,7 +82,7 @@ namespace AlexzanderCowell
                                 {
                                     Destroy(_hitIt.transform.gameObject);
                                     Instantiate(s1Potato, _hitIt.transform.position, Quaternion.identity);
-                                    characterSFXSource.PlayOneShot(plantingSFX);
+                                    characterSfxSource.PlayOneShot(plantingSfx);
                                     SeedStorage.potatoSeed -= 1;
                                 }
                             }
@@ -72,7 +93,7 @@ namespace AlexzanderCowell
                                 {
                                     Destroy(_hitIt.transform.gameObject);
                                     Instantiate(s1Carrots, _hitIt.transform.position, Quaternion.identity);
-                                    characterSFXSource.PlayOneShot(plantingSFX);
+                                    characterSfxSource.PlayOneShot(plantingSfx);
                                     SeedStorage.carrotSeed -= 1;
                                 }
                             }
@@ -83,7 +104,7 @@ namespace AlexzanderCowell
                     
                     if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Shovel") 
                     {
-                        if ((selectionHit.CompareTag(selectableWitherdTag) || selectionHit.CompareTag(selectableGrassTag)) && selectionHit != null)
+                        if ((selectionHit.CompareTag(_selectableWitheredTag) || selectionHit.CompareTag(_selectableGrassTag)) && selectionHit != null)
                         {
                             _selectedRenderer = selectionHit.GetComponent<Renderer>();
                             
@@ -95,7 +116,7 @@ namespace AlexzanderCowell
                                     Vector3 xyz = new Vector3(-90, 0, 0);
                                     Quaternion newRotation = Quaternion.Euler(xyz);
                                     Instantiate(dirtPatch, _hitIt.transform.position, newRotation);
-                                    characterSFXSource.PlayOneShot(plantingSFX);
+                                    characterSfxSource.PlayOneShot(plantingSfx);
                                     Destroy(_hitIt.transform.gameObject);
                                 }
                                 _selection = selectionHit;
@@ -105,25 +126,80 @@ namespace AlexzanderCowell
 
                     if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Hammer")
                     {
-                        _selectedRenderer = selectionHit.GetComponent<Renderer>();
-
-                        if (_selectedRenderer != null)
+                        if (selectionHit.CompareTag(_selectableFenceTag) && selectionHit != null)
                         {
-                            _selectedRenderer.material = highLightedM;
-                            if (Input.GetKeyDown(KeyCode.Mouse0))
-                            {
-                                Vector3 xyz = new Vector3(-90, 0, 0);
-                                Vector3 fenceSpawnPos = new Vector3(_hitIt.transform.position.x, 12.2f, _hitIt.transform.position.z);
-                                Quaternion newRotation = Quaternion.Euler(xyz);
+                            _selectedRenderer = selectionHit.GetComponent<Renderer>();
 
-                                Instantiate(fenceObject, fenceSpawnPos, newRotation);
-                                characterSFXSource.PlayOneShot(hammerSFX);
+                            if (_selectedRenderer != null)
+                            {
+                                _selectedRenderer.material = highLightedM;
+                                if (Input.GetKeyDown(KeyCode.Mouse0))
+                                {
+                                    Vector3 xyz = new Vector3(-90, 0, 0);
+                                    var position = _hitIt.transform.position;
+                                    Vector3 fenceSpawnPos = new Vector3(position.x, 12.2f,
+                                        position.z);
+                                    Quaternion newRotation = Quaternion.Euler(xyz);
+
+                                    Instantiate(fenceObject, fenceSpawnPos, newRotation);
+                                    characterSfxSource.PlayOneShot(hammerSfx);
+                                }
+
+                                _selection = selectionHit;
                             }
-                            _selection = selectionHit;
+                        }
+                    }
+                    
+                    if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Axe")
+                    {
+                        if (selectionHit.CompareTag(_selectableTreeTag) && selectionHit != null)
+                        {
+                            _selectedRenderer = selectionHit.GetComponent<Renderer>();
+
+                            if (_selectedRenderer != null)
+                            {
+                                _selectedRenderer.material = highLightedM;
+                                if (Input.GetKeyDown(KeyCode.Mouse0))
+                                {
+                                    _canChopTree = true;
+                                }
+                                if (_canChopTree)
+                                {
+                                    _ChoppingTimer.SetActive(true);
+                                    axeObject.GetComponent<Animator>().enabled = true;
+                                    _choppingTreeTime -= 1 * Time.deltaTime;
+                                    AppearingSlider();
+                                    _ChoppingTimer.GetComponent<Slider>().value = SliderCountDown();
+                                }
+
+                                if (_choppingTreeTime < 0.2f)
+                                {
+                                    _ChoppingTimer.SetActive(false);
+                                    DisappearingSlider();
+                                    _canChopTree = false;
+                                    axeObject.GetComponent<Animator>().enabled = false;
+                                    _choppingTreeTime = _choppingTreeTimeOriginal;
+                                }
+                                
+                                _selection = selectionHit;
+                            }
                         }
                     }
                 }
             }
+        }
+        
+        private float SliderCountDown() {
+            
+            return (_choppingTreeTime / _choppingTreeTimeOriginal ); // Gives the variables of the slider of the current and max boot timer of the slider.
+        }
+        private void AppearingSlider() 
+        {
+            _ChoppingTimer.GetComponent<CanvasGroup>().alpha = 1; // Makes the slider appear in the UI.
+        }
+        private void DisappearingSlider() 
+        {
+            _ChoppingTimer.GetComponent<CanvasGroup>().alpha = 0; // Makes the slider appear in the UI.
         }
     }
 }

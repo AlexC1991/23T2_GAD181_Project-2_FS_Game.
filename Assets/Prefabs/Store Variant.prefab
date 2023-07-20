@@ -702,7 +702,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Buy/Sell
+  m_Text: Buy Here
 --- !u!1001 &6360130974506859679
 PrefabInstance:
   m_ObjectHideFlags: 0

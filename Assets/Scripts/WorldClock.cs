@@ -36,8 +36,14 @@ namespace AlexzanderCowell
         [SerializeField] private Light light2;
         [SerializeField] private Light light3;
         [SerializeField] private Light light4;
+        [SerializeField] private GameObject fireBugs;
+        [SerializeField] private Material daySkybox;
+        [SerializeField] private Material nightSkybox;
+        [SerializeField] private Material stormyWeatherSkyBox;
         private void Start()
         {
+            RenderSettings.skybox = daySkybox;
+            fireBugs.SetActive(false);
             timeMultiplier = 0.8f;
             hourTime = 8;
             minuteTime = 0;
@@ -132,70 +138,96 @@ namespace AlexzanderCowell
             if (hourTime > 7 && hourTime < 9)
             {
                 LightSettingEight();
+                fireBugs.SetActive(false);
             }
             if (hourTime > 9 && hourTime < 11)
             {
                 LightSettingSeven();
+                fireBugs.SetActive(false);
             } 
             if (hourTime > 11 && hourTime < 13)
             {
                 LightSettingSix();
+                fireBugs.SetActive(false);
             }
             if (hourTime > 13 && hourTime < 15)
             {
                 LightSettingFive();
+                fireBugs.SetActive(false);
             }
             if (hourTime > 15 && hourTime < 17)
             {
                 LightSettingFour();
+                fireBugs.SetActive(false);
             }
             if (hourTime > 17 && hourTime < 19)
             {
                 LightSettingThree();
+                fireBugs.SetActive(false);
             }
             if (hourTime > 19 && hourTime < 21)
             {
                 LightSettingTwo();
+                fireBugs.SetActive(true);
             }
             if (hourTime > 21 && hourTime < 23)
             {
                 LightSettingOne();
+                fireBugs.SetActive(false);
             }
             if (hourTime > 1 && hourTime < 3)
             {
                 LightSettingThree();
+                fireBugs.SetActive(true);
             }
             if (hourTime > 3 && hourTime < 5)
             {
-                LightSettingFive();
+                LightSettingFour();
+                fireBugs.SetActive(false);
             }
             if (hourTime > 5 && hourTime < 7)
             {
-                LightSettingSeven();
+                LightSettingSix();
+                fireBugs.SetActive(false);
             }
 
             if (bScript.addMoreTime)
             {
-                hourTime += 4;
+                hourTime += 3;
                 bScript.addMoreTime = false;
+            }
+
+            if (hourTime > 5 && hourTime < 16 && !WeatherScript.isRainingNow)
+            {
+                RenderSettings.skybox = daySkybox;
+            }
+            
+            if (hourTime > 16 || hourTime < 5 && !WeatherScript.isRainingNow)
+            {
+                RenderSettings.skybox = nightSkybox;
+            }
+
+            if (WeatherScript.isRainingNow)
+            {
+                RenderSettings.skybox = stormyWeatherSkyBox;
             }
         }
 
         private void LightSettingOne()
-        {   topLight.intensity = 0.1f; 
-            light1.intensity = 0.1f;
-            light2.intensity = 0.1f;
-            light3.intensity = 0.1f;
-            light4.intensity = 0.1f;
+        {   topLight.intensity = 0.05f; 
+            light1.intensity = 0.05f;
+            light2.intensity = 0.05f;
+            light3.intensity = 0.05f;
+            light4.intensity = 0.05f;
         }
 
         private void LightSettingTwo()
         {
-            topLight.intensity = 0.2f; 
-            light1.intensity = 0.2f;
-            light2.intensity = 0.2f;
-            light3.intensity = 0.2f;
-            light4.intensity = 0.2f;
+            topLight.intensity = 0.1f; 
+            light1.intensity = 0.1f;
+            light2.intensity = 0.1f;
+            light3.intensity = 0.1f;
+            light4.intensity = 0.1f;
         }
         private void LightSettingThree()
         {

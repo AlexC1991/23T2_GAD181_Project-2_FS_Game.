@@ -12,6 +12,8 @@ TagManager:
   - Car
   - Equipment
   - Grass
+  - Fence
+  - Tree
   layers:
   - Default
   - TransparentFX

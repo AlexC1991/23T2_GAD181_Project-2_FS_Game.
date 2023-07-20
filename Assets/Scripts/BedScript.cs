@@ -42,7 +42,7 @@ namespace AlexzanderCowell
         {
             timerToRestAgain -= 1f * Time.deltaTime;
             
-            if (ableToSleep && Input.GetKeyDown(KeyCode.T) && timerToRestAgain < 0.2f && buttonPressedE)
+            if (ableToSleep && Input.GetKeyDown(KeyCode.E) && timerToRestAgain < 0.2f && buttonPressedE)
             {
                 startSleeping = true;
                 blackSleepScreen.GetComponent<CanvasGroup>().alpha = 1;
