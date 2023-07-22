@@ -14,6 +14,7 @@ TagManager:
   - Grass
   - Fence
   - Tree
+  - Net
   layers:
   - Default
   - TransparentFX

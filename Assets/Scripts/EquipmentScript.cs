@@ -58,7 +58,7 @@ namespace AlexzanderCowell
         {
             while (true)
             {
-                Debug.Log("running hold equip routine");
+                
                 heldEquipmentName = equipment.transform.name;
                 equipment.transform.position = playerCharacter.GetComponent<CharacterMovementScript>().eqiupmentHoldPosition.transform.position;
 
@@ -90,10 +90,10 @@ namespace AlexzanderCowell
                     equipmentInstructionText.gameObject.SetActive(true);
                 }
 
-                if (heldEquipmentName == "FishingRod")
+                if (heldEquipmentName == "Net")
                 {
-                    playerCharacter.GetComponent<CharacterMovementScript>().equipmentFishingRod.SetActive(true);
-                    equipmentInstructionText.text = "Nice day for fishing ain it?";
+                    playerCharacter.GetComponent<CharacterMovementScript>().equipmentNet.SetActive(true);
+                    equipmentInstructionText.text = "Gotta catch them all?";
                     equipmentInstructionText.gameObject.SetActive(true);
                 }
                 CheckEquipmentDrop();
@@ -132,9 +132,9 @@ namespace AlexzanderCowell
                         playerCharacter.GetComponent<CharacterMovementScript>().equipmentSpade.SetActive(false);
                     }
 
-                    if (heldEquipmentName == "FishingRod")
+                    if (heldEquipmentName == "Net")
                     {
-                        playerCharacter.GetComponent<CharacterMovementScript>().equipmentFishingRod.SetActive(false);
+                        playerCharacter.GetComponent<CharacterMovementScript>().equipmentNet.SetActive(false);
                     }
                     
                     // Resets all of the variables for the equipment checking

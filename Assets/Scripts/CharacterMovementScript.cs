@@ -28,7 +28,7 @@ namespace AlexzanderCowell
         [SerializeField] public GameObject equipmentHammer;
         [SerializeField] public GameObject equipmentAxe;
         [SerializeField] public GameObject equipmentSpade;
-        [SerializeField] public GameObject equipmentFishingRod;
+        [SerializeField] public GameObject equipmentNet;
 
         //Declaration of the Audio source for SFX
         [Header("SFX Based Settings")]
@@ -38,6 +38,7 @@ namespace AlexzanderCowell
 
         private void Start()
         {
+            equipmentNet.GetComponent<Animator>().enabled = false;
             _cameraTransform = Camera.main.transform;
             controller = GetComponent<CharacterController>();
             jumpHeight = 2;

@@ -23,9 +23,6 @@ namespace AlexzanderCowell
 
         private void Update()
         {
-            Debug.Log("Weather State: " + _currentWeatherState);
-            Debug.Log("Weather Previous Time: " + _previousHourTime);
-            Debug.Log("Weather Current Time: " + _currentHourTime);
             _currentHourTime = WorldClock.hourTime;
             _randomWeather = Random.Range(0,5);
             
