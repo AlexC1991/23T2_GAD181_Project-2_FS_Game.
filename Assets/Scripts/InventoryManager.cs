@@ -9,7 +9,7 @@ namespace AlexzanderCowell
         [SerializeField] private Text selectedInInvertory;
         [SerializeField] private Text selectedAmount;
         [SerializeField] private Sprite carrotSeeds, potatoSeeds, carrotIcon, potatoIcon;
-        [HideInInspector] public int _selected;
+        [HideInInspector] public static int _selected;
 
 
         private void Update()

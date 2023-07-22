@@ -54,7 +54,7 @@ public class BeforeGameScreen : MonoBehaviour
     // Method that runs the tutorial audio
     private void RunTutorial()
     {
-        Debug.Log("Tutorial is running from top");
+        
         if (MainMenu.tutorialStage == 0)
         {
             audioSource.PlayOneShot(tutorialVoiceLine1);

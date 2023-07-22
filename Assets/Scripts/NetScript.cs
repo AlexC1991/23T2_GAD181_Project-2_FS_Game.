@@ -24,9 +24,8 @@ namespace AlexzanderCowell
 
         private void OnParticleCollision(GameObject other)
         {
-            if (other.CompareTag("Equipment"))
+            if (other.CompareTag("Net"))
             {
-                Debug.Log("Hitting It");
                 _netHitFireFly = true;
             }
         }
@@ -40,7 +39,7 @@ namespace AlexzanderCowell
 
         private void Update()
         {
-            _maybeCatchFireFly = Random.Range(0, 4);
+            _maybeCatchFireFly = Random.Range(0, 7);
             _randomValue = Random.Range(0, 8);
 
             if (_netHitFireFly)
@@ -80,7 +79,7 @@ namespace AlexzanderCowell
                 animationTimer = _originalAnimationTimer;
             }
             
-            // Debug.Log("Fire Fly Hit Total " +_torchChargeTotal);
+            Debug.Log("Fire Fly Hit Total " +_torchChargeTotal);
             // Debug.Log("Lucky Number Draw " +_outputInt);
             // Debug.Log("Adding This Amount " +_randomIntOutput);
             // Debug.Log("Did the Fire Fly Hit? " +_netHitFireFly);

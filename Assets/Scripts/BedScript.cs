@@ -26,6 +26,7 @@ namespace AlexzanderCowell
 
         private void Start()
         {
+            blackSleepScreen.SetActive(true);
             readyOrNotText.text = ("Not Ready");               
             readyOrNot.GetComponent<Text>().color = Color.red; 
             timerToRestAgain = 1;

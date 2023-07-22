@@ -76,11 +76,11 @@ namespace AlexzanderCowell
                         _selectedRenderer = selectionHit.GetComponent<Renderer>();
 
                         if (_selectedRenderer != null && EquipmentScript.heldEquipmentName == "GardenSpade" && 
-                            (SeedStorage.potatoSeed > 0 && (invManager._selected == 2) || (SeedStorage.carrotSeed > 0 && (invManager._selected == 1))))
+                            (SeedStorage.potatoSeed > 0 && (InventoryManager._selected == 2) || (SeedStorage.carrotSeed > 0 && (InventoryManager._selected == 1))))
                         {
                             _selectedRenderer.material = highLightedM;
 
-                            if (SeedStorage.potatoSeed > 0 && (invManager._selected == 2))
+                            if (SeedStorage.potatoSeed > 0 && (InventoryManager._selected == 2))
                             {
                                 if (Input.GetKeyDown(KeyCode.Mouse0))
                                 {
@@ -101,7 +101,7 @@ namespace AlexzanderCowell
                                 }
                             }
 
-                            if (SeedStorage.carrotSeed > 0 && (invManager._selected == 1))
+                            if (SeedStorage.carrotSeed > 0 && (InventoryManager._selected == 1))
                             {
                                 if (Input.GetKeyDown(KeyCode.Mouse0))
                                 {
