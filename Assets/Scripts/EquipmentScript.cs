@@ -20,6 +20,9 @@ namespace AlexzanderCowell
         // Declaration of the text that shows on the UI when a tool is held
         [SerializeField] private TMP_Text equipmentInstructionText;
 
+        // Declaration of the InGameTutorial object
+        [SerializeField] private GameObject gameTut;
+
         // Method updates frequently
         private void Update()
         {
@@ -67,10 +70,27 @@ namespace AlexzanderCowell
                     playerCharacter.GetComponent<CharacterMovementScript>().equipmentShovel.SetActive(true);
                     equipmentInstructionText.text = "Left click to dig up grass.";
                     equipmentInstructionText.gameObject.SetActive(true);
+
+                    if (InGameTutorial.firstShovel == true)
+                    {
+                        Debug.Log("from equipment");
+                        InGameTutorial.tutorialAudioSource.Stop();
+                        MainMenu.tutorialStage++;
+                        InGameTutorial.firstShovel = false;
+
+                        gameTut.GetComponent<InGameTutorial>().RunTutorial();
+                    }
                 }
 
                 if (heldEquipmentName == "Hammer")
                 {
+                    Debug.Log("Holding hammer");
+
+                    if (InGameTutorial.firstShovel == true)
+                    {
+
+                    }
+
                     playerCharacter.GetComponent<CharacterMovementScript>().equipmentHammer.SetActive(true);
                     equipmentInstructionText.text = "Left click to build a fence.";
                     equipmentInstructionText.gameObject.SetActive(true);
@@ -81,6 +101,8 @@ namespace AlexzanderCowell
                     playerCharacter.GetComponent<CharacterMovementScript>().equipmentAxe.SetActive(true);
                     equipmentInstructionText.text = "HERES JHONNY!";
                     equipmentInstructionText.gameObject.SetActive(true);
+
+
                 }
 
                 if (heldEquipmentName == "GardenSpade")

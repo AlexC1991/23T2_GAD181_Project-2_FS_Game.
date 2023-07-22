@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace AlexzanderCowell
@@ -36,6 +37,9 @@ namespace AlexzanderCowell
         [SerializeField] private AudioClip footstepSFX;
         private bool footstepAudioPlaying = false;
 
+        // Declaration of the InGameTutorial object
+        [SerializeField] private GameObject gameTut;
+
         private void Start()
         {
             equipmentNet.GetComponent<Animator>().enabled = false;
@@ -69,6 +73,18 @@ namespace AlexzanderCowell
             controller.Move((movement + _moveDirection) * Time.deltaTime); // Gets all the movement variables and moves the character.
 
             FootstepSFX();
+            
+            if (InGameTutorial.firstMove == true)
+            {
+                if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+                {
+                    InGameTutorial.tutorialAudioSource.Stop();
+                    MainMenu.tutorialStage++;
+                    InGameTutorial.firstMove = false;
+                   
+                    gameTut.GetComponent<InGameTutorial>().RunTutorial();
+                }
+            }
         }
 
         private void JumpMovement()

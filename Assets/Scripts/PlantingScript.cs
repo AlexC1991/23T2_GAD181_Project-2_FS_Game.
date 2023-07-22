@@ -43,6 +43,10 @@ namespace AlexzanderCowell
         private float _choppingTreeTimeOriginal;
         [SerializeField] private GameObject _ChoppingTimer;
 
+        // Declaration of the InGameTutorial object
+        [Header("Script References")]
+        [SerializeField] private GameObject gameTut;
+
         private void Start()
         {
             _ChoppingTimer.SetActive(false);
@@ -118,6 +122,15 @@ namespace AlexzanderCowell
                                     Instantiate(dirtPatch, _hitIt.transform.position, newRotation);
                                     characterSfxSource.PlayOneShot(plantingSfx);
                                     Destroy(_hitIt.transform.gameObject);
+
+                                    if (InGameTutorial.lastShovel == true)
+                                    {
+                                        InGameTutorial.tutorialAudioSource.Stop();
+                                        MainMenu.tutorialStage++;
+                                        InGameTutorial.firstMove = false;
+
+                                        gameTut.GetComponent<InGameTutorial>().RunTutorial();
+                                    }
                                 }
                                 _selection = selectionHit;
                             }
