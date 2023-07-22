@@ -71,9 +71,9 @@ namespace AlexzanderCowell
                     equipmentInstructionText.text = "Left click to dig up grass.";
                     equipmentInstructionText.gameObject.SetActive(true);
 
+                    // Checks if first time then if it is progresses tutorial stage
                     if (InGameTutorial.firstShovel == true)
                     {
-                        Debug.Log("from equipment");
                         InGameTutorial.tutorialAudioSource.Stop();
                         MainMenu.tutorialStage++;
                         InGameTutorial.firstShovel = false;
@@ -84,16 +84,27 @@ namespace AlexzanderCowell
 
                 if (heldEquipmentName == "Hammer")
                 {
-                    Debug.Log("Holding hammer");
-
-                    if (InGameTutorial.firstShovel == true)
-                    {
-
-                    }
-
                     playerCharacter.GetComponent<CharacterMovementScript>().equipmentHammer.SetActive(true);
                     equipmentInstructionText.text = "Left click to build a fence.";
                     equipmentInstructionText.gameObject.SetActive(true);
+
+                    if (InGameTutorial.firstShovel == true)
+                    {
+                        gameTut.GetComponent<InGameTutorial>().NotTheShovel();
+                    }
+                    else if (InGameTutorial.firstSpade == true)
+                    {
+                        gameTut.GetComponent<InGameTutorial>().NotTheSpade();
+                    }
+
+                    if (MainMenu.tutorialStage >= 7)
+                    {
+                        if (InGameTutorial.firstHammer == true)
+                        {
+                            gameTut.GetComponent<InGameTutorial>().FirstHammerPickup();
+                            InGameTutorial.firstHammer = false;
+                        }
+                    }
                 }
 
                 if (heldEquipmentName == "Axe")
@@ -102,7 +113,23 @@ namespace AlexzanderCowell
                     equipmentInstructionText.text = "HERES JHONNY!";
                     equipmentInstructionText.gameObject.SetActive(true);
 
+                    if (InGameTutorial.firstShovel == true)
+                    {
+                        gameTut.GetComponent<InGameTutorial>().NotTheShovel();
+                    }
+                    else if (InGameTutorial.firstSpade == true)
+                    {
+                        gameTut.GetComponent<InGameTutorial>().NotTheSpade();
+                    }
 
+                    if (MainMenu.tutorialStage >= 7)
+                    {
+                        if (InGameTutorial.firstAxe == true) 
+                        {
+                            gameTut.GetComponent<InGameTutorial>().FirstAxePickup();
+                            InGameTutorial.firstAxe = false;
+                        }
+                    }
                 }
 
                 if (heldEquipmentName == "GardenSpade")
@@ -110,6 +137,19 @@ namespace AlexzanderCowell
                     playerCharacter.GetComponent<CharacterMovementScript>().equipmentSpade.SetActive(true);
                     equipmentInstructionText.text = "This is David Spade.";
                     equipmentInstructionText.gameObject.SetActive(true);
+
+                    if (InGameTutorial.firstSpade == true && InGameTutorial.firstShovel == false)
+                    {
+                        InGameTutorial.tutorialAudioSource.Stop();
+                        MainMenu.tutorialStage++;
+                        InGameTutorial.firstSpade = false;
+
+                        gameTut.GetComponent<InGameTutorial>().RunTutorial();
+                    }
+                    if (InGameTutorial.firstShovel == true)
+                    {
+                        gameTut.GetComponent<InGameTutorial>().NotTheShovel();
+                    }
                 }
 
                 if (heldEquipmentName == "Net")
@@ -117,6 +157,24 @@ namespace AlexzanderCowell
                     playerCharacter.GetComponent<CharacterMovementScript>().equipmentNet.SetActive(true);
                     equipmentInstructionText.text = "Gotta catch them all?";
                     equipmentInstructionText.gameObject.SetActive(true);
+
+                    if (InGameTutorial.firstShovel == true)
+                    {
+                        gameTut.GetComponent<InGameTutorial>().NotTheShovel();
+                    }
+                    else if (InGameTutorial.firstSpade == true)
+                    {
+                        gameTut.GetComponent<InGameTutorial>().NotTheSpade();
+                    }
+
+                    if (MainMenu.tutorialStage >= 7)
+                    {
+                        if (InGameTutorial.firstNet == true)
+                        {
+                            gameTut.GetComponent<InGameTutorial>().FirstNetPickup();
+                            InGameTutorial.firstNet = false;
+                        }
+                    }
                 }
                 CheckEquipmentDrop();
 
@@ -165,6 +223,8 @@ namespace AlexzanderCowell
                     equipmentInstructionText.text = "";
                     equipmentInstructionText.gameObject.SetActive(false);
                     CharacterMovementScript.holdingEquipment = false;
+
+                    InGameTutorial.audioSpacerInt = 0;
                 }
             }
         }

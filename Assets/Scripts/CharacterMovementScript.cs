@@ -76,6 +76,7 @@ namespace AlexzanderCowell
             
             if (InGameTutorial.firstMove == true)
             {
+                // Checks if first time then if it is progresses tutorial stage
                 if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
                 {
                     InGameTutorial.tutorialAudioSource.Stop();

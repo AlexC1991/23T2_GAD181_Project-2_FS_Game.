@@ -27125,10 +27125,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: df294ec6af5826649996551affc943a8, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.05
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -47391,14 +47391,12 @@ MonoBehaviour:
   tutorialVoiceLine2: {fileID: 8300000, guid: c9b4561c05866bf41b32eda3bdf7ea94, type: 3}
   notTheShovel: {fileID: 8300000, guid: df2f5a2cbaa316044a472d8def281f47, type: 3}
   tutorialVoiceLine3: {fileID: 8300000, guid: b8ebd5b7bdae20048a40c29fa6dbac65, type: 3}
+  notTheSpade: {fileID: 8300000, guid: 2ca1f357655c2eb4dab7f0db79a0f5a9, type: 3}
   tutorialVoiceLine4: {fileID: 8300000, guid: 64f390914cf632643827bf3f8fb52b26, type: 3}
   tutorialVoiceLine5: {fileID: 8300000, guid: 99512130220e3c748a7a11cf6973d2c0, type: 3}
-  notTheSpade: {fileID: 8300000, guid: 2ca1f357655c2eb4dab7f0db79a0f5a9, type: 3}
   tutorialVoiceLine6: {fileID: 8300000, guid: b80605135cc1461439c7fde3b270c7cf, type: 3}
-  tutorialVoiceLine7: {fileID: 8300000, guid: 4598764cd2d29754c9da4cce45e5e157, type: 3}
-  tutorialVoiceLine8: {fileID: 8300000, guid: eea489763819c7d4da7264e13fa48d5f, type: 3}
-  tutorialVoiceLine9: {fileID: 8300000, guid: 9aa9b08c69ed86c4993c9010f8762bfc, type: 3}
-  tutorialVoiceLine10: {fileID: 8300000, guid: 9aa9b08c69ed86c4993c9010f8762bfc, type: 3}
+  tutorialVoiceLine7: {fileID: 8300000, guid: 1128b8ee68549ba44bcad74f96b3ac64, type: 3}
+  tutorialVoiceLine8: {fileID: 8300000, guid: 9aa9b08c69ed86c4993c9010f8762bfc, type: 3}
   firstAxeVoiceLine: {fileID: 8300000, guid: de1482e470e2f6c4195b1640aae53d68, type: 3}
   firstHammerVoiceLine: {fileID: 8300000, guid: 183ceb99679dbeb4e93678ba6a56d49b, type: 3}
   farmerImageObject: {fileID: 392489049}
@@ -84472,6 +84470,7 @@ MonoBehaviour:
   addMoreTime: 0
   readyOrNot: {fileID: 1409690053}
   readyOrNotText: {fileID: 1409690055}
+  gameTut: {fileID: 710694784}
 --- !u!1001 &1751916737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94642,6 +94641,10 @@ MonoBehaviour:
   daySkybox: {fileID: 2100000, guid: b0a816b03c90f7740ad3d327c8b20486, type: 2}
   nightSkybox: {fileID: 2100000, guid: 682791db33b590540943a286a030f3fc, type: 2}
   stormyWeatherSkyBox: {fileID: 2100000, guid: 9d7cf70d00e51a349b98bb87ecacbccf, type: 2}
+  ambienceSFXSource: {fileID: 408100637}
+  daytimeAmbience: {fileID: 8300000, guid: df294ec6af5826649996551affc943a8, type: 3}
+  nightAmbience: {fileID: 8300000, guid: a8b22cc28ab9354458123f661bcaad6a, type: 3}
+  stormyAmbience: {fileID: 8300000, guid: b360541a9d47e8041a573e5ffe4f573c, type: 3}
 --- !u!114 &1950012742
 MonoBehaviour:
   m_ObjectHideFlags: 0

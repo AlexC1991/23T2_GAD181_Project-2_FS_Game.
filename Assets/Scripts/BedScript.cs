@@ -20,11 +20,15 @@ namespace AlexzanderCowell
         [SerializeField] private GameObject readyOrNot;
         [SerializeField] private Text readyOrNotText;
 
+        // Declaration of the InGameTutorial object
+        [Header("Script References")]
+        [SerializeField] private GameObject gameTut;
+
         private void Start()
         {
             readyOrNotText.text = ("Not Ready");               
             readyOrNot.GetComponent<Text>().color = Color.red; 
-            timerToRestAgain = 15;
+            timerToRestAgain = 1;
             addMoreTime = false;
             startSleeping = false;
             blackSleepScreen.GetComponent<CanvasGroup>().alpha = 0;
@@ -50,11 +54,21 @@ namespace AlexzanderCowell
                 Time.timeScale = 0;
                 buttonPressedE = false;
                 ableToSleep = false;
+
+                // Checks if first time then if it is progresses tutorial stage
+                if (InGameTutorial.firstSleep == true && InGameTutorial.firstPlant == false)
+                {
+                    InGameTutorial.tutorialAudioSource.Stop();
+                    MainMenu.tutorialStage++;
+                    InGameTutorial.firstSleep = false;
+
+                    gameTut.GetComponent<InGameTutorial>().RunTutorial();
+                }
             }
             
             if (resetTimer)
             {
-                timerToRestAgain = 15;
+                timerToRestAgain = 1;
                 readyOrNotText.text = ("Not Ready");                     
                 readyOrNot.GetComponent<Text>().color = Color.red; 
                 resetTimer = false;

@@ -18,7 +18,6 @@ public class InGameTutorial : MonoBehaviour
     [SerializeField] private AudioClip tutorialVoiceLine6;
     [SerializeField] private AudioClip tutorialVoiceLine7;
     [SerializeField] private AudioClip tutorialVoiceLine8;
-    [SerializeField] private AudioClip tutorialVoiceLine9;
     [SerializeField] private AudioClip firstAxeVoiceLine;
     [SerializeField] private AudioClip firstHammerVoiceLine;
 
@@ -37,9 +36,12 @@ public class InGameTutorial : MonoBehaviour
     public static bool firstShovel;
     public static bool lastShovel;
     public static bool firstSpade;
-    public static bool lastSpade;
+    public static bool firstPlant;
+    public static bool firstSleep;
     public static bool firstAxe;
     public static bool firstHammer;
+    public static bool firstNet;
+    public static int audioSpacerInt;
 
     // Plays at the start
     private void Start()
@@ -52,14 +54,18 @@ public class InGameTutorial : MonoBehaviour
         firstShovel = true;
         lastShovel = true;
         firstSpade = true;
-        lastSpade = true;
+        firstPlant = true;
+        firstSleep = true;
         firstAxe = true;
         firstHammer = true;
+        firstNet = true;
 
         publicNotTheShovel = notTheShovel;
         publicNotTheSpade = notTheSpade;
         publicFirstAxe = firstAxeVoiceLine;
         publicFirstHammer = firstHammerVoiceLine;
+
+        audioSpacerInt = 0;
     }
 
     // updates every frame
@@ -71,13 +77,12 @@ public class InGameTutorial : MonoBehaviour
             farmerImageObject.transform.position = new Vector3(transform.position.x, myCurve.Evaluate((Time.time % myCurve.length)) + 150f, transform.position.z);
         }
 
-        //Debug.Log(MainMenu.tutorialStage);
+        Debug.Log(MainMenu.tutorialStage);
     }
 
     // Handles all of the turotial audio clips playing
     public void RunTutorial()
     {
-        Debug.Log("running tutorial method");
         if (MainMenu.tutorialStage == 0)
         {
             tutorialAudioSource.PlayOneShot(tutorialVoiceLine1);
@@ -116,25 +121,93 @@ public class InGameTutorial : MonoBehaviour
 
         if (MainMenu.tutorialStage == 7)
         {
-            tutorialAudioSource.PlayOneShot(tutorialVoiceLine8);
+            if (tutorialAudioSource.isPlaying == false)
+            {
+                this.gameObject.SetActive(false);
+            }
         }
 
         if (MainMenu.tutorialStage == 8)
         {
-            tutorialAudioSource.PlayOneShot(tutorialVoiceLine9);
+            if (tutorialAudioSource.isPlaying == false)
+            {
+                this.gameObject.SetActive(false);
+            }
+        }
+
+        if (MainMenu.tutorialStage == 9)
+        {
+            if (tutorialAudioSource.isPlaying == false)
+            {
+                this.gameObject.SetActive(false);
+            }
+        }
+
+        if (MainMenu.tutorialStage == 10)
+        {
+            if (tutorialAudioSource.isPlaying == false)
+            {
+                EndTutorial();
+            }
         }
     }
 
+    // Method that calls when picking up the wrong object
     public void NotTheShovel()
     {
-        tutorialAudioSource.PlayOneShot(notTheShovel);
-    }   
-
-    public void NotTheSpade()
-    {
-        tutorialAudioSource.PlayOneShot(notTheSpade);
+        if (audioSpacerInt == 0)
+        {
+            tutorialAudioSource.Stop();
+            tutorialAudioSource.PlayOneShot(notTheShovel);
+            audioSpacerInt++;
+        }
     }
 
+    // Method that calls when picking up the wrong object
+    public void NotTheSpade()
+    {
+        if (audioSpacerInt == 0)
+        {
+            tutorialAudioSource.Stop();
+            tutorialAudioSource.PlayOneShot(notTheSpade);
+            audioSpacerInt++;
+        }
+    }
+
+    // Method that is called when picking up the axe for the first time after the tutorial
+    public void FirstAxePickup()
+    {
+        if (MainMenu.tutorialStage >= 7)
+        {
+            this.gameObject.SetActive(true);
+            tutorialAudioSource.Stop();
+            tutorialAudioSource.PlayOneShot(firstAxeVoiceLine);
+        }
+    }
+
+    // Method that is called when picking up the hammer for the first time after the tutorial
+    public void FirstHammerPickup()
+    {
+        if (MainMenu.tutorialStage >= 7)
+        {
+            this.gameObject.SetActive(true);
+            tutorialAudioSource.Stop();
+            tutorialAudioSource.PlayOneShot(firstHammerVoiceLine);
+        }
+    }
+
+    // Method that is called when picking up the net for the first time after the tutorial
+    public void FirstNetPickup()
+    {
+        if (MainMenu.tutorialStage >= 7)
+        {
+            this.gameObject.SetActive(true);
+            tutorialAudioSource.Stop();
+            tutorialAudioSource.PlayOneShot(null);
+        }
+    }
+
+    // Method that destroys the tutorial
     public void EndTutorial()
     {
         Destroy(this);

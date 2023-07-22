@@ -40,6 +40,14 @@ namespace AlexzanderCowell
         [SerializeField] private Material daySkybox;
         [SerializeField] private Material nightSkybox;
         [SerializeField] private Material stormyWeatherSkyBox;
+
+        // Declaration of variable needed for the ambience
+        [Header("Ambiance Controls")]
+        [SerializeField] private AudioSource ambienceSFXSource;
+        [SerializeField] private AudioClip daytimeAmbience;
+        [SerializeField] private AudioClip nightAmbience;
+        [SerializeField] private AudioClip stormyAmbience;
+
         private void Start()
         {
             RenderSettings.skybox = daySkybox;
@@ -200,16 +208,34 @@ namespace AlexzanderCowell
             if (hourTime > 5 && hourTime < 16 && !WeatherScript.isRainingNow)
             {
                 RenderSettings.skybox = daySkybox;
+               
+                if (ambienceSFXSource.isPlaying == false || ambienceSFXSource.clip != daytimeAmbience)
+                {
+                    ambienceSFXSource.clip = daytimeAmbience;
+                    ambienceSFXSource.Play();
+                }
             }
             
             if (hourTime > 16 || hourTime < 5 && !WeatherScript.isRainingNow)
             {
                 RenderSettings.skybox = nightSkybox;
+                
+                if (ambienceSFXSource.isPlaying == false || ambienceSFXSource.clip != nightAmbience)
+                {
+                    ambienceSFXSource.clip = nightAmbience;
+                    ambienceSFXSource.Play();
+                }
             }
 
             if (WeatherScript.isRainingNow)
             {
                 RenderSettings.skybox = stormyWeatherSkyBox;
+                
+                if (ambienceSFXSource.isPlaying == false || ambienceSFXSource.clip != stormyAmbience)
+                {
+                    ambienceSFXSource.clip = stormyAmbience;
+                    ambienceSFXSource.Play();
+                }
             }
         }
 

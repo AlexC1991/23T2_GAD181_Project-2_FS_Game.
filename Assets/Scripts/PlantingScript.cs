@@ -88,6 +88,16 @@ namespace AlexzanderCowell
                                     Instantiate(s1Potato, _hitIt.transform.position, Quaternion.identity);
                                     characterSfxSource.PlayOneShot(plantingSfx);
                                     SeedStorage.potatoSeed -= 1;
+
+                                    // Checks if first time then if it is progresses tutorial stage
+                                    if (InGameTutorial.firstPlant == true)
+                                    {
+                                        InGameTutorial.tutorialAudioSource.Stop();
+                                        MainMenu.tutorialStage++;
+                                        InGameTutorial.firstPlant = false;
+
+                                        gameTut.GetComponent<InGameTutorial>().RunTutorial();
+                                    }
                                 }
                             }
 
@@ -99,6 +109,16 @@ namespace AlexzanderCowell
                                     Instantiate(s1Carrots, _hitIt.transform.position, Quaternion.identity);
                                     characterSfxSource.PlayOneShot(plantingSfx);
                                     SeedStorage.carrotSeed -= 1;
+
+                                    // Checks if first time then if it is progresses tutorial stage
+                                    if (InGameTutorial.firstPlant == true)
+                                    {
+                                        InGameTutorial.tutorialAudioSource.Stop();
+                                        MainMenu.tutorialStage++;
+                                        InGameTutorial.firstPlant = false;
+
+                                        gameTut.GetComponent<InGameTutorial>().RunTutorial();
+                                    }
                                 }
                             }
 
@@ -123,11 +143,12 @@ namespace AlexzanderCowell
                                     characterSfxSource.PlayOneShot(plantingSfx);
                                     Destroy(_hitIt.transform.gameObject);
 
+                                    // Checks if first time then if it is progresses tutorial stage
                                     if (InGameTutorial.lastShovel == true)
                                     {
                                         InGameTutorial.tutorialAudioSource.Stop();
                                         MainMenu.tutorialStage++;
-                                        InGameTutorial.firstMove = false;
+                                        InGameTutorial.lastShovel = false;
 
                                         gameTut.GetComponent<InGameTutorial>().RunTutorial();
                                     }
