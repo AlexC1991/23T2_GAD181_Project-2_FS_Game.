@@ -160,7 +160,7 @@ namespace AlexzanderCowell
 
                     if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Hammer")
                     {
-                        if (selectionHit.CompareTag(_selectableFenceTag) && selectionHit != null)
+                        if ((selectionHit.CompareTag(_selectableGrassTag) || selectionHit.CompareTag(_selectableDirtTag)) && selectionHit != null)
                         {
                             _selectedRenderer = selectionHit.GetComponent<Renderer>();
 
@@ -169,14 +169,16 @@ namespace AlexzanderCowell
                                 _selectedRenderer.material = highLightedM;
                                 if (Input.GetKeyDown(KeyCode.Mouse0))
                                 {
-                                    Vector3 xyz = new Vector3(-90, 0, 0);
+                                    Vector3 xyz = new Vector3(0, 0, 0);
                                     var position = _hitIt.transform.position;
-                                    Vector3 fenceSpawnPos = new Vector3(position.x, 12.2f,
-                                        position.z);
-                                    Quaternion newRotation = Quaternion.Euler(xyz);
+                                    Vector3 fenceSpawnPos = position;
+                                    Quaternion newRotation = this.gameObject.transform.rotation;
 
                                     Instantiate(fenceObject, fenceSpawnPos, newRotation);
                                     characterSfxSource.PlayOneShot(hammerSfx);
+
+                                    Debug.Log("the fence is built at " + fenceSpawnPos + " with rotation " + newRotation);
+                                    Debug.Log("Player loking at " + this.gameObject.transform.rotation);
                                 }
 
                                 _selection = selectionHit;

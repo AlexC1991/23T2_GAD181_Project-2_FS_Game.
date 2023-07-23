@@ -79,15 +79,15 @@ public class InGameTutorial : MonoBehaviour
             farmerImageObject.transform.position = new Vector3(transform.position.x, myCurve.Evaluate((Time.time % myCurve.length)) + 150f, transform.position.z);
         }
 
-        Debug.Log(MainMenu.tutorialStage);
-
         if (MainMenu.tutorialStage >= 7)
         {
-            this.gameObject.SetActive(false);
-
-            if (tutorialAudioSource.isPlaying == false)
+            if (tutorialAudioSource.isPlaying == true)
             {
                 this.gameObject.SetActive(true);
+            }
+            else
+            {
+                this.gameObject.SetActive(false);
             }
         }
     }
@@ -138,6 +138,22 @@ public class InGameTutorial : MonoBehaviour
             tutorialAudioSource.PlayOneShot(tutorialVoiceLine7);
         }
 
+        if (MainMenu.tutorialStage == 7)
+        {
+            tutorialInstruction.text = "CONGRATS. You have completed the tutorial.";
+            tutorialAudioSource.PlayOneShot(tutorialVoiceLine8);
+        }
+
+        if (MainMenu.tutorialStage >= 8)
+        {
+            this.gameObject.SetActive(false);
+
+            if (tutorialAudioSource.isPlaying == false)
+            {
+                this.gameObject.SetActive(true);
+            }
+        }
+
         if (MainMenu.tutorialStage == 10)
         {
             if (tutorialAudioSource.isPlaying == false)
@@ -177,6 +193,7 @@ public class InGameTutorial : MonoBehaviour
             this.gameObject.SetActive(true);
             tutorialAudioSource.Stop();
             tutorialAudioSource.PlayOneShot(firstAxeVoiceLine);
+            tutorialInstruction.text = "Use the Axe to cut down trees";
         }
     }
 
@@ -188,6 +205,7 @@ public class InGameTutorial : MonoBehaviour
             this.gameObject.SetActive(true);
             tutorialAudioSource.Stop();
             tutorialAudioSource.PlayOneShot(firstHammerVoiceLine);
+            tutorialInstruction.text = "Use the Hammer to build fences";
         }
     }
 
@@ -199,6 +217,7 @@ public class InGameTutorial : MonoBehaviour
             this.gameObject.SetActive(true);
             tutorialAudioSource.Stop();
             tutorialAudioSource.PlayOneShot(null);
+            tutorialInstruction.text = "Use the Net to catch fireflies at night";
         }
     }
 

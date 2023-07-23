@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.211
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.20498711, g: 0.22912788, b: 0.22973037, a: 0.211}
+  m_IndirectSpecularColor: {r: 0.2049731, g: 0.22912616, b: 0.22973266, a: 0.211}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -73413,7 +73413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6ac5e3abffa73044aaa00d763b3798da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8f37d90ed5da2b24182f611b94395de7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -96775,6 +96775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1963245934}
   - component: {fileID: 1963245933}
+  - component: {fileID: 1963245937}
   m_Layer: 5
   m_Name: SpeachBubble
   m_TagString: Untagged
@@ -96834,21 +96835,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
---- !u!4 &1963245934
-Transform:
+--- !u!224 &1963245934
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1963245932}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.13327, y: -2.2006772, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 4}
   m_LocalScale: {x: 5.946709, y: -7.6619897, z: 76.240005}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 710694785}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -30.13327, y: -2.2006772}
+  m_SizeDelta: {x: 7.5, y: 3.24}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1963245937
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963245932}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1964032090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104102,8 +104116,8 @@ MonoBehaviour:
   s1Carrots: {fileID: 7210767981655614128, guid: d3b47f80e73eb7c48859871d78f01c1e, type: 3}
   dirtPatch: {fileID: 5488316871085788877, guid: 2e492288759a88b49b326a43d9cb95d9, type: 3}
   characterSfxSource: {fileID: 7105678638446233934}
-  plantingSfx: {fileID: 0}
-  hammerSfx: {fileID: 0}
+  plantingSfx: {fileID: 8300000, guid: 9027bbcdef34d1c4c9435f43013e6b05, type: 3}
+  hammerSfx: {fileID: 8300000, guid: d2540b5c8fced3847be97c2c21a02e01, type: 3}
   fenceObject: {fileID: 371310664581231982, guid: c4266878398088e40b7030d93890afdc, type: 3}
   axeObject: {fileID: 1743240035613500332}
   _ChoppingTimer: {fileID: 503320007}
