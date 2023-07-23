@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.211
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.20498711, g: 0.22912788, b: 0.22973037, a: 0.211}
+  m_IndirectSpecularColor: {r: 0.2049731, g: 0.22912616, b: 0.22973266, a: 0.211}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -101495,6 +101495,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Water
       objectReference: {fileID: 0}
+    - target: {fileID: 7215481147293561333, guid: de886a2b04afe664a9ed6730c537d49d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8028046162584251215, guid: de886a2b04afe664a9ed6730c537d49d, type: 3}
       propertyPath: m_RootOrder
       value: 490
@@ -104245,7 +104249,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invManager: {fileID: 1950012743}
   highLightedM: {fileID: 2100000, guid: 9c5d082f53c20cb4e8f431f2941bcb54, type: 2}
-  defaultMat: {fileID: 2100000, guid: 41b0211d13c3fa54cac44905c0972ce8, type: 2}
+  defaultGrassMat: {fileID: 2100000, guid: 36149509f4a427b469d46bdf5e66fa65, type: 2}
+  defaultTreeMat: {fileID: 2100000, guid: 2958eb6882e9faf4399e408ed5d86213, type: 2}
   s1Potato: {fileID: 3567706061537090776, guid: 6208963e72c843e479262c13ae7a0766, type: 3}
   s1Carrots: {fileID: 7210767981655614128, guid: d3b47f80e73eb7c48859871d78f01c1e, type: 3}
   dirtPatch: {fileID: 5488316871085788877, guid: 2e492288759a88b49b326a43d9cb95d9, type: 3}

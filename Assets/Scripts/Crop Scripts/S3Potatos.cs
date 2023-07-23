@@ -28,7 +28,7 @@ namespace AlexzanderCowell
         {
             currentTimeOfPlanting = WorldClock.hourTime; // Tracks the world time hour as a variable with in the script.
             
-            if (_canCollect && Input.GetKeyDown(KeyCode.C)) // If you can collect is true & you press C.
+            if (_canCollect && Input.GetKeyDown(KeyCode.E)) // If you can collect is true & you press C.
             {
                 Vector3 xyz = new Vector3(-90, 0, 0); // Makes a xyz Vector 3 variable to use below.
                 Quaternion newRotation = Quaternion.Euler(xyz); // using the xyz it is used in a Quaternion variable called newRotation.

@@ -47,7 +47,7 @@ public class BeforeGameScreen : MonoBehaviour
         // Shakes the farmer image when speaking
         if (audioSource.isPlaying) 
         {
-            farmerImageObject.transform.position = new Vector3(transform.position.x, myCurve.Evaluate((Time.time % myCurve.length)) + 530, transform.position.z);
+            farmerImageObject.transform.position = new Vector3(transform.position.x, myCurve.Evaluate((Time.time % myCurve.length)) + 350, transform.position.z);
         }
     }
 

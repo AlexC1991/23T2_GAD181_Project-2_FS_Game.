@@ -76,7 +76,7 @@ public class InGameTutorial : MonoBehaviour
         // Shakes the farmer image when speaking
         if (tutorialAudioSource.isPlaying)
         {
-            farmerImageObject.transform.position = new Vector3(transform.position.x, myCurve.Evaluate((Time.time % myCurve.length)) + 150f, transform.position.z);
+            farmerImageObject.transform.position = new Vector3(transform.position.x, myCurve.Evaluate((Time.time % myCurve.length)) + 70f, transform.position.z);
         }
 
         if (MainMenu.tutorialStage >= 7)

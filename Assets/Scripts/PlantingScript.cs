@@ -23,7 +23,8 @@ namespace AlexzanderCowell
         private Renderer _selectedRenderer;
         private Transform _selection;
         [SerializeField] private Material highLightedM;
-        [SerializeField] private Material defaultMat;
+        [SerializeField] private Material defaultGrassMat;
+        [SerializeField] private Material defaultTreeMat;
         private Transform _spawnHere;
         [SerializeField] private GameObject s1Potato;
         [SerializeField] private GameObject s1Carrots;
@@ -86,7 +87,14 @@ namespace AlexzanderCowell
             if (_selection != null)
             {
                 _selectedRenderer = _selection.GetComponent<Renderer>();
-                _selectedRenderer.material = defaultMat;
+                if (_selectedRenderer.CompareTag(_selectableDirtTag) || _selectedRenderer.CompareTag(_selectableDirtTag) || _selectedRenderer.CompareTag(_selectableWitheredTag))
+                {
+                    _selectedRenderer.material = defaultGrassMat;
+                }
+                else if (_selectedRenderer.CompareTag(_selectableTreeTag))
+                {
+                    _selectedRenderer.material = defaultTreeMat;
+                }
                 _selection = null;
             }
 
