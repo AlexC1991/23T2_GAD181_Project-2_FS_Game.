@@ -43,7 +43,7 @@ public class CarSpawner : MonoBehaviour
         carSpawnIndex = Random.Range(0, carPrefabList.Count);
 
         // Updates the spawning interval to a random number
-        spawnInterval = Random.Range(1.5f, 4f);
+        spawnInterval = Random.Range(1.5f, 6f);
         
         //Debug.Log(timeToDestroy);
         //Debug.Log(finishedWithCar);
