@@ -1,6 +1,7 @@
 using AlexzanderCowell;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class InGameTutorial : MonoBehaviour
@@ -29,6 +30,7 @@ public class InGameTutorial : MonoBehaviour
     // Declaration of the images of the farmer
     [Header("Farmer Image Settings")]
     [SerializeField] private GameObject farmerImageObject;
+    [SerializeField] private TMP_Text tutorialInstruction;
     public AnimationCurve myCurve;
 
     // Declaration of booleans used to track if its the first time someone has used a tool
@@ -78,6 +80,16 @@ public class InGameTutorial : MonoBehaviour
         }
 
         Debug.Log(MainMenu.tutorialStage);
+
+        if (MainMenu.tutorialStage >= 7)
+        {
+            this.gameObject.SetActive(false);
+
+            if (tutorialAudioSource.isPlaying == false)
+            {
+                this.gameObject.SetActive(true);
+            }
+        }
     }
 
     // Handles all of the turotial audio clips playing
@@ -85,62 +97,45 @@ public class InGameTutorial : MonoBehaviour
     {
         if (MainMenu.tutorialStage == 0)
         {
+            tutorialInstruction.text = "Use W, A, S & D keys to move. Use the Spacebar to jump.";
             tutorialAudioSource.PlayOneShot(tutorialVoiceLine1);
         }
 
         if (MainMenu.tutorialStage == 1)
         {
+            tutorialInstruction.text = "Go to the tool shed and pickup the shovel. Pickup items with the E key.";
             tutorialAudioSource.PlayOneShot(tutorialVoiceLine2);
         }
 
         if (MainMenu.tutorialStage == 2)
         {
+            tutorialInstruction.text = "When holding the Shovel, Left Click on gras to dig it up.";
             tutorialAudioSource.PlayOneShot(tutorialVoiceLine3);
         }
 
         if (MainMenu.tutorialStage == 3)
         {
+            tutorialInstruction.text = "Drop an item by pressing the E key again.";
             tutorialAudioSource.PlayOneShot(tutorialVoiceLine4);
             MainMenu.tutorialStage++;
         }
 
         if (MainMenu.tutorialStage == 4 && tutorialAudioSource.isPlaying == false)
         {
+            tutorialInstruction.text = "Use the Scroll Wheel on the mouse to select the seeds. Then Left Click to plant them in dirt.";
             tutorialAudioSource.PlayOneShot(tutorialVoiceLine5);
         }
 
         if (MainMenu.tutorialStage == 5)
         {
+            tutorialInstruction.text = "Use the Scroll Wheel on the mouse to select the seeds. Then Left Click to plant them in dirt.";
             tutorialAudioSource.PlayOneShot(tutorialVoiceLine6);
         }
 
         if (MainMenu.tutorialStage == 6)
         {
+            tutorialInstruction.text = "Head over to the bed and sleep there by pressing the E key.";
             tutorialAudioSource.PlayOneShot(tutorialVoiceLine7);
-        }
-
-        if (MainMenu.tutorialStage == 7)
-        {
-            if (tutorialAudioSource.isPlaying == false)
-            {
-                this.gameObject.SetActive(false);
-            }
-        }
-
-        if (MainMenu.tutorialStage == 8)
-        {
-            if (tutorialAudioSource.isPlaying == false)
-            {
-                this.gameObject.SetActive(false);
-            }
-        }
-
-        if (MainMenu.tutorialStage == 9)
-        {
-            if (tutorialAudioSource.isPlaying == false)
-            {
-                this.gameObject.SetActive(false);
-            }
         }
 
         if (MainMenu.tutorialStage == 10)

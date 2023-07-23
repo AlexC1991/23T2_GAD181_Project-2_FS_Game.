@@ -68,7 +68,7 @@ namespace AlexzanderCowell
                 if (heldEquipmentName == "Shovel")
                 {
                     playerCharacter.GetComponent<CharacterMovementScript>().equipmentShovel.SetActive(true);
-                    equipmentInstructionText.text = "Left click to dig up grass.";
+                    equipmentInstructionText.text = "";
                     equipmentInstructionText.gameObject.SetActive(true);
 
                     // Checks if first time then if it is progresses tutorial stage
@@ -85,7 +85,7 @@ namespace AlexzanderCowell
                 if (heldEquipmentName == "Hammer")
                 {
                     playerCharacter.GetComponent<CharacterMovementScript>().equipmentHammer.SetActive(true);
-                    equipmentInstructionText.text = "Left click to build a fence.";
+                    equipmentInstructionText.text = "";
                     equipmentInstructionText.gameObject.SetActive(true);
 
                     if (InGameTutorial.firstShovel == true)
@@ -110,7 +110,7 @@ namespace AlexzanderCowell
                 if (heldEquipmentName == "Axe")
                 {
                     playerCharacter.GetComponent<CharacterMovementScript>().equipmentAxe.SetActive(true);
-                    equipmentInstructionText.text = "HERES JHONNY!";
+                    equipmentInstructionText.text = "";
                     equipmentInstructionText.gameObject.SetActive(true);
 
                     if (InGameTutorial.firstShovel == true)
@@ -135,7 +135,7 @@ namespace AlexzanderCowell
                 if (heldEquipmentName == "GardenSpade")
                 {
                     playerCharacter.GetComponent<CharacterMovementScript>().equipmentSpade.SetActive(true);
-                    equipmentInstructionText.text = "This is David Spade.";
+                    equipmentInstructionText.text = "";
                     equipmentInstructionText.gameObject.SetActive(true);
 
                     if (InGameTutorial.firstSpade == true && InGameTutorial.firstShovel == false)
@@ -155,7 +155,7 @@ namespace AlexzanderCowell
                 if (heldEquipmentName == "Net")
                 {
                     playerCharacter.GetComponent<CharacterMovementScript>().equipmentNet.SetActive(true);
-                    equipmentInstructionText.text = "Gotta catch them all?";
+                    equipmentInstructionText.text = "";
                     equipmentInstructionText.gameObject.SetActive(true);
 
                     if (InGameTutorial.firstShovel == true)
