@@ -12,7 +12,7 @@ public class ShedLightScript : MonoBehaviour
 
         if (_currentTime > 16 || _currentTime < 5)
         {
-            shedLight.GetComponent<Light>().intensity = 20f;
+            shedLight.GetComponent<Light>().intensity = 50f;
         }
 
         if (_currentTime > 5 && _currentTime < 16)

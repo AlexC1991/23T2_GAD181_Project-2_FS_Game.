@@ -29,6 +29,7 @@ namespace AlexzanderCowell
         [Header("World Day Cycle Indicator")] 
         [SerializeField] private GameObject sunEmote;
         [SerializeField] private GameObject moonEmote;
+        [SerializeField] private GameObject rainEmote;
 
         [Header(("World Light Control"))] 
         [SerializeField] private Light topLight;
@@ -87,18 +88,7 @@ namespace AlexzanderCowell
             {
                 hourTime = 0;
             }
-
-            if (hourTime > 6 && hourTime < 18)
-            {
-                sunEmote.SetActive(true);
-                moonEmote.SetActive(false);
-            }
-            else
-            {
-                sunEmote.SetActive(false);
-                moonEmote.SetActive(true);
-            }
-
+            
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 pauseG.SetActive(false);
@@ -211,6 +201,9 @@ namespace AlexzanderCowell
                
                 if (ambienceSFXSource.isPlaying == false || ambienceSFXSource.clip != daytimeAmbience)
                 {
+                    sunEmote.SetActive(true);
+                    moonEmote.SetActive(false);
+                    rainEmote.SetActive(false);
                     ambienceSFXSource.clip = daytimeAmbience;
                     ambienceSFXSource.Play();
                 }
@@ -222,6 +215,9 @@ namespace AlexzanderCowell
                 
                 if (ambienceSFXSource.isPlaying == false || ambienceSFXSource.clip != nightAmbience)
                 {
+                    sunEmote.SetActive(false);
+                    moonEmote.SetActive(true);
+                    rainEmote.SetActive(false);
                     ambienceSFXSource.clip = nightAmbience;
                     ambienceSFXSource.Play();
                 }
@@ -233,6 +229,9 @@ namespace AlexzanderCowell
                 
                 if (ambienceSFXSource.isPlaying == false || ambienceSFXSource.clip != stormyAmbience)
                 {
+                    sunEmote.SetActive(false);
+                    moonEmote.SetActive(false);
+                    rainEmote.SetActive(true);
                     ambienceSFXSource.clip = stormyAmbience;
                     ambienceSFXSource.Play();
                 }

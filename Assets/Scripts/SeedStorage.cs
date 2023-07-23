@@ -5,7 +5,7 @@ namespace AlexzanderCowell
     public class SeedStorage : MonoBehaviour
     {
         // [HideInInspector] public static int totalSeedStorage, totalVegStorage; // Unused atm but will be implementing in future.
-        [HideInInspector] public static int carrotSeed, potatoSeed,carrots,potatos; // Total of each Seed & Vegetables.
+        [HideInInspector] public static int carrotSeed, potatoSeed,carrots,potatos,wood; // Total of each Seed & Vegetables.
         [HideInInspector] public static float carrotSeedOutput, potatoSeedOutPut; // Carrot Seed & Potato Seed Pools.
 
 
@@ -15,6 +15,7 @@ namespace AlexzanderCowell
             potatoSeed = 2; // Total Potato Seeds Start with.
             carrots = 1; // Total Carrots Start with.
             potatos = 1; // Total Potato's Start with.
+            wood = 0;
         }
 
         private void Update()
@@ -23,6 +24,7 @@ namespace AlexzanderCowell
             potatoSeed = Mathf.Clamp(potatoSeed, 0, 300); // Sets Potato Seeds Can't be less than 0 and can't have more then 300.
             carrots = Mathf.Clamp(carrots, 0, 300); // Sets Carrots Can't be less than 0 and can't have more then 300.
             potatos = Mathf.Clamp(potatos, 0, 300); // Sets Potato's Can't be less than 0 and can't have more then 300.
+            wood = Mathf.Clamp(wood, 0, 300); // Sets Wood Can't be less than 0 and can't have more then 300.
 
             if (carrotSeedOutput >= 1) // If Carrot Seed Pool gets to 1 or more then you get 2 carrot seeds and lose 2 float from carrot float pool.
             {

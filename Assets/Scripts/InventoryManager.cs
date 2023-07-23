@@ -8,7 +8,7 @@ namespace AlexzanderCowell
         [SerializeField] private GameObject selectedItem;
         [SerializeField] private Text selectedInInvertory;
         [SerializeField] private Text selectedAmount;
-        [SerializeField] private Sprite carrotSeeds, potatoSeeds, carrotIcon, potatoIcon;
+        [SerializeField] private Sprite carrotSeeds, potatoSeeds, carrotIcon, potatoIcon, woodIcon, torchIcon;
         [HideInInspector] public static int _selected;
 
 
@@ -24,14 +24,14 @@ namespace AlexzanderCowell
                 _selected -= 1;
             }
 
-            if (_selected > 4)
+            if (_selected > 6)
             {
                 _selected = 1;
             }
 
             if (_selected < 1)
             {
-                _selected = 4;
+                _selected = 6;
             }
 
 
@@ -64,6 +64,20 @@ namespace AlexzanderCowell
                 selectedInInvertory.text = ("Potatoes");
                 selectedAmount.text = (SeedStorage.potatos).ToString();
                 selectedInInvertory.GetComponent<Text>().color = Color.yellow; 
+            }
+            if (_selected == 5)
+            {
+                selectedItem.GetComponent<Image>().sprite = woodIcon;
+                selectedInInvertory.text = ("Logs of Wood");
+                selectedAmount.text = (SeedStorage.wood).ToString();
+                selectedInInvertory.GetComponent<Text>().color = Color.green; 
+            }
+            if (_selected == 6)
+            {
+                selectedItem.GetComponent<Image>().sprite = torchIcon;
+                selectedInInvertory.text = ("Torch");
+                selectedAmount.text = (TorchScript.batteryBank).ToString();
+                selectedInInvertory.GetComponent<Text>().color = Color.gray; 
             }
         }
     }
