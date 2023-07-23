@@ -87,7 +87,7 @@ namespace AlexzanderCowell
             if (_selection != null)
             {
                 _selectedRenderer = _selection.GetComponent<Renderer>();
-                if (_selectedRenderer.CompareTag(_selectableDirtTag) || _selectedRenderer.CompareTag(_selectableDirtTag) || _selectedRenderer.CompareTag(_selectableWitheredTag))
+                if (_selectedRenderer.CompareTag(_selectableGrassTag) || _selectedRenderer.CompareTag(_selectableDirtTag) || _selectedRenderer.CompareTag(_selectableWitheredTag))
                 {
                     _selectedRenderer.material = defaultGrassMat;
                 }
