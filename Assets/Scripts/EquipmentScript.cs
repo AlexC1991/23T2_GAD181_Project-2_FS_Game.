@@ -72,7 +72,7 @@ namespace AlexzanderCowell
                     equipmentInstructionText.gameObject.SetActive(true);
 
                     // Checks if first time then if it is progresses tutorial stage
-                    if (InGameTutorial.firstShovel == true)
+                    if (InGameTutorial.firstShovel)
                     {
                         InGameTutorial.tutorialAudioSource.Stop();
                         MainMenu.tutorialStage++;
@@ -88,18 +88,18 @@ namespace AlexzanderCowell
                     equipmentInstructionText.text = "";
                     equipmentInstructionText.gameObject.SetActive(true);
 
-                    if (InGameTutorial.firstShovel == true)
+                    if (InGameTutorial.firstShovel)
                     {
                         gameTut.GetComponent<InGameTutorial>().NotTheShovel();
                     }
-                    else if (InGameTutorial.firstSpade == true)
+                    else if (InGameTutorial.firstSpade)
                     {
                         gameTut.GetComponent<InGameTutorial>().NotTheSpade();
                     }
 
                     if (MainMenu.tutorialStage >= 7)
                     {
-                        if (InGameTutorial.firstHammer == true)
+                        if (InGameTutorial.firstHammer)
                         {
                             gameTut.GetComponent<InGameTutorial>().FirstHammerPickup();
                             InGameTutorial.firstHammer = false;
@@ -113,18 +113,18 @@ namespace AlexzanderCowell
                     equipmentInstructionText.text = "";
                     equipmentInstructionText.gameObject.SetActive(true);
 
-                    if (InGameTutorial.firstShovel == true)
+                    if (InGameTutorial.firstShovel)
                     {
                         gameTut.GetComponent<InGameTutorial>().NotTheShovel();
                     }
-                    else if (InGameTutorial.firstSpade == true)
+                    else if (InGameTutorial.firstSpade)
                     {
                         gameTut.GetComponent<InGameTutorial>().NotTheSpade();
                     }
 
                     if (MainMenu.tutorialStage >= 7)
                     {
-                        if (InGameTutorial.firstAxe == true) 
+                        if (InGameTutorial.firstAxe) 
                         {
                             gameTut.GetComponent<InGameTutorial>().FirstAxePickup();
                             InGameTutorial.firstAxe = false;
@@ -138,7 +138,7 @@ namespace AlexzanderCowell
                     equipmentInstructionText.text = "";
                     equipmentInstructionText.gameObject.SetActive(true);
 
-                    if (InGameTutorial.firstSpade == true && InGameTutorial.firstShovel == false)
+                    if (InGameTutorial.firstSpade == true && !InGameTutorial.firstShovel)
                     {
                         InGameTutorial.tutorialAudioSource.Stop();
                         MainMenu.tutorialStage++;
@@ -146,7 +146,7 @@ namespace AlexzanderCowell
 
                         gameTut.GetComponent<InGameTutorial>().RunTutorial();
                     }
-                    if (InGameTutorial.firstShovel == true)
+                    if (InGameTutorial.firstShovel)
                     {
                         gameTut.GetComponent<InGameTutorial>().NotTheShovel();
                     }
@@ -158,18 +158,18 @@ namespace AlexzanderCowell
                     equipmentInstructionText.text = "";
                     equipmentInstructionText.gameObject.SetActive(true);
 
-                    if (InGameTutorial.firstShovel == true)
+                    if (InGameTutorial.firstShovel)
                     {
                         gameTut.GetComponent<InGameTutorial>().NotTheShovel();
                     }
-                    else if (InGameTutorial.firstSpade == true)
+                    else if (InGameTutorial.firstSpade)
                     {
                         gameTut.GetComponent<InGameTutorial>().NotTheSpade();
                     }
 
                     if (MainMenu.tutorialStage >= 7)
                     {
-                        if (InGameTutorial.firstNet == true)
+                        if (InGameTutorial.firstNet)
                         {
                             gameTut.GetComponent<InGameTutorial>().FirstNetPickup();
                             InGameTutorial.firstNet = false;
@@ -185,7 +185,7 @@ namespace AlexzanderCowell
         private void CheckEquipmentDrop()
         {
             // Checks to make sure the player isnt holding equipment
-            if (CharacterMovementScript.holdingEquipment == true)
+            if (CharacterMovementScript.holdingEquipment)
             {
                 // Checks to see if the player presses the e key
                 if (Input.GetKeyDown(KeyCode.E))

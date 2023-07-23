@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace AlexzanderCowell
@@ -35,9 +36,18 @@ namespace AlexzanderCowell
         [SerializeField] private AudioSource characterSFXSource;
         [SerializeField] private AudioClip footstepSFX;
         private bool footstepAudioPlaying = false;
+        public static bool insideTreeCircle;
 
         // Declaration of the InGameTutorial object
         [SerializeField] private GameObject gameTut;
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Tree"))
+            {
+                insideTreeCircle = true;
+            }
+        }
 
         private void Start()
         {
@@ -112,6 +122,14 @@ namespace AlexzanderCowell
             {
                 characterSFXSource.Stop();
                 footstepAudioPlaying = false;
+            }
+        }
+        
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Tree"))
+            {
+                insideTreeCircle = false;
             }
         }
     }

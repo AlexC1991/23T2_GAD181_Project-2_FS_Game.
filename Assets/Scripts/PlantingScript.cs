@@ -29,26 +29,33 @@ namespace AlexzanderCowell
         [SerializeField] private GameObject s1Carrots;
         [SerializeField] private GameObject dirtPatch;
 
-        [FormerlySerializedAs("characterSFXSource")]
-        [Header("SFX Based Settings")]
-        [SerializeField] private AudioSource characterSfxSource;
+        [FormerlySerializedAs("characterSFXSource")] [Header("SFX Based Settings")] [SerializeField]
+        private AudioSource characterSfxSource;
+
         [SerializeField] private AudioClip plantingSfx;
         [SerializeField] private AudioClip hammerSfx;
 
-        [Header("Equipment Based Settings")]
-        [SerializeField] private GameObject fenceObject;
+        [Header("Equipment Based Settings")] [SerializeField]
+        private GameObject fenceObject;
+
         [SerializeField] private GameObject axeObject;
         private bool _canChopTree;
         private float _choppingTreeTime;
         private float _choppingTreeTimeOriginal;
         [SerializeField] private GameObject _ChoppingTimer;
+        public static bool choppingFinished;
+        private float choppingTreeProgressFinished;
+        private float choppingTreeProgressFinishedOriginal;
 
         // Declaration of the InGameTutorial object
-        [Header("Script References")]
-        [SerializeField] private GameObject gameTut;
+        [Header("Script References")] [SerializeField]
+        private GameObject gameTut;
 
         private void Start()
         {
+            choppingTreeProgressFinished = 1;
+            choppingTreeProgressFinishedOriginal = choppingTreeProgressFinished;
+            choppingFinished = false;
             _ChoppingTimer.SetActive(false);
             axeObject.GetComponent<Animator>().enabled = false;
             _choppingTreeTime = 5;
@@ -57,6 +64,25 @@ namespace AlexzanderCowell
 
         private void FixedUpdate()
         {
+
+            if (_choppingTreeTime == _choppingTreeTimeOriginal && choppingFinished)
+            {
+                choppingTreeProgressFinished -= 0.95f * Time.deltaTime;
+                Debug.Log(choppingTreeProgressFinished);
+                if (choppingTreeProgressFinished < 0.2f)
+                {
+                    choppingTreeProgressFinished = 0;
+                    choppingFinished = false;
+                }
+
+            }
+
+            if (_choppingTreeTime == _choppingTreeTimeOriginal && !choppingFinished)
+            {
+                Debug.Log(choppingTreeProgressFinished);
+                choppingTreeProgressFinished = choppingTreeProgressFinishedOriginal;
+            }
+
             if (_selection != null)
             {
                 _selectedRenderer = _selection.GetComponent<Renderer>();
@@ -70,13 +96,14 @@ namespace AlexzanderCowell
                 if (Physics.Raycast(rayH, out _hitIt, 6f))
                 {
                     var selectionHit = _hitIt.transform;
-                    
+
                     if (selectionHit.CompareTag(_selectableDirtTag) && selectionHit != null)
                     {
                         _selectedRenderer = selectionHit.GetComponent<Renderer>();
 
-                        if (_selectedRenderer != null && EquipmentScript.heldEquipmentName == "GardenSpade" && 
-                            (SeedStorage.potatoSeed > 0 && (InventoryManager._selected == 2) || (SeedStorage.carrotSeed > 0 && (InventoryManager._selected == 1))))
+                        if (_selectedRenderer != null && EquipmentScript.heldEquipmentName == "GardenSpade" &&
+                            (SeedStorage.potatoSeed > 0 && (InventoryManager._selected == 2) ||
+                             (SeedStorage.carrotSeed > 0 && (InventoryManager._selected == 1))))
                         {
                             _selectedRenderer.material = highLightedM;
 
@@ -125,13 +152,14 @@ namespace AlexzanderCowell
                             _selection = selectionHit;
                         }
                     }
-                    
-                    if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Shovel") 
+
+                    if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Shovel")
                     {
-                        if ((selectionHit.CompareTag(_selectableWitheredTag) || selectionHit.CompareTag(_selectableGrassTag)) && selectionHit != null)
+                        if ((selectionHit.CompareTag(_selectableWitheredTag) ||
+                             selectionHit.CompareTag(_selectableGrassTag)) && selectionHit != null)
                         {
                             _selectedRenderer = selectionHit.GetComponent<Renderer>();
-                            
+
                             if (_selectedRenderer != null)
                             {
                                 _selectedRenderer.material = highLightedM;
@@ -153,6 +181,7 @@ namespace AlexzanderCowell
                                         gameTut.GetComponent<InGameTutorial>().RunTutorial();
                                     }
                                 }
+
                                 _selection = selectionHit;
                             }
                         }
@@ -160,7 +189,8 @@ namespace AlexzanderCowell
 
                     if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Hammer")
                     {
-                        if ((selectionHit.CompareTag(_selectableGrassTag) || selectionHit.CompareTag(_selectableDirtTag)) && selectionHit != null)
+                        if ((selectionHit.CompareTag(_selectableGrassTag) ||
+                             selectionHit.CompareTag(_selectableDirtTag)) && selectionHit != null)
                         {
                             _selectedRenderer = selectionHit.GetComponent<Renderer>();
 
@@ -177,16 +207,49 @@ namespace AlexzanderCowell
                                     Instantiate(fenceObject, fenceSpawnPos, newRotation);
                                     characterSfxSource.PlayOneShot(hammerSfx);
 
-                                    Debug.Log("the fence is built at " + fenceSpawnPos + " with rotation " + newRotation);
+                                    Debug.Log(
+                                        "the fence is built at " + fenceSpawnPos + " with rotation " + newRotation);
                                     Debug.Log("Player loking at " + this.gameObject.transform.rotation);
                                 }
 
                                 _selection = selectionHit;
                             }
                         }
+
+                        if ((selectionHit.CompareTag(_selectableGrassTag) ||
+                             selectionHit.CompareTag(_selectableFenceTag)) && selectionHit != null)
+                        {
+                            _selectedRenderer = selectionHit.GetComponent<Renderer>();
+
+                            if (_selectedRenderer != null)
+                            {
+                                _selectedRenderer.material = highLightedM;
+                                if (Input.GetKeyDown(KeyCode.Mouse0))
+                                {
+                                    Vector3 xyz = new Vector3(0, 0, 0);
+                                    var position = _hitIt.transform.position;
+                                    Vector3 fenceSpawnPos = position;
+                                    Quaternion newRotation = this.gameObject.transform.rotation;
+
+                                    if (selectionHit.transform.gameObject.tag == "Enemy")
+                                    {
+                                        Destroy(selectionHit.transform.gameObject);
+
+                                        characterSfxSource.PlayOneShot(hammerSfx);
+
+                                    }
+
+                                    _selection = selectionHit;
+                                }
+
+
+                            }
+                        }
+
                     }
-                    
-                    if (CharacterMovementScript.holdingEquipment && EquipmentScript.heldEquipmentName == "Axe")
+
+                    if (CharacterMovementScript.holdingEquipment &&
+                        EquipmentScript.heldEquipmentName == "Axe")
                     {
                         if (selectionHit.CompareTag(_selectableTreeTag) && selectionHit != null)
                         {
@@ -199,8 +262,10 @@ namespace AlexzanderCowell
                                 {
                                     _canChopTree = true;
                                 }
+
                                 if (_canChopTree)
                                 {
+                                    choppingFinished = false;
                                     _ChoppingTimer.SetActive(true);
                                     axeObject.GetComponent<Animator>().enabled = true;
                                     _choppingTreeTime -= 1 * Time.deltaTime;
@@ -210,30 +275,37 @@ namespace AlexzanderCowell
 
                                 if (_choppingTreeTime < 0.2f)
                                 {
+                                    choppingFinished = true;
                                     _ChoppingTimer.SetActive(false);
                                     DisappearingSlider();
                                     _canChopTree = false;
                                     axeObject.GetComponent<Animator>().enabled = false;
                                     _choppingTreeTime = _choppingTreeTimeOriginal;
                                 }
-                                
+
                                 _selection = selectionHit;
                             }
                         }
+
                     }
                 }
             }
         }
-        
-        private float SliderCountDown() {
-            
-            return (_choppingTreeTime / _choppingTreeTimeOriginal ); // Gives the variables of the slider of the current and max boot timer of the slider.
+
+        private float SliderCountDown()
+        {
+
+            return
+                (_choppingTreeTime /
+                 _choppingTreeTimeOriginal); // Gives the variables of the slider of the current and max boot timer of the slider.
         }
-        private void AppearingSlider() 
+
+        private void AppearingSlider()
         {
             _ChoppingTimer.GetComponent<CanvasGroup>().alpha = 1; // Makes the slider appear in the UI.
         }
-        private void DisappearingSlider() 
+
+        private void DisappearingSlider()
         {
             _ChoppingTimer.GetComponent<CanvasGroup>().alpha = 0; // Makes the slider appear in the UI.
         }
