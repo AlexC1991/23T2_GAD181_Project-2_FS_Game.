@@ -1,32 +1,41 @@
 Shader "Custom/CartoonyShader" {
     Properties {
         _MainTex ("Main Texture", 2D) = "white" {}
-        _OutlineColor ("Outline Color", Color) = (0,0,0,1)
+        _OutlineColor ("Outline Color", Color) = (0, 0, 0, 1)
         _OutlineThickness ("Outline Thickness", Range(0, 0.1)) = 0.01
     }
- 
+
     SubShader {
         Tags { "RenderType"="Opaque" }
         LOD 200
- 
-        CGPROGRAM
-        #pragma surface surf Lambert
-        
-        sampler2D _MainTex;
-        fixed4 _OutlineColor;
-        half _OutlineThickness;
-        
+
+        HLSLINCLUDE
+        #include <UnityPBSLighting.cginc>
+
+        #include "UnityCG.cginc"
+        #include "Library/PackageCache/com.unity.textmeshpro@3.0.6/Editor Resources/Shaders/TMP_Properties.cginc"
+
         struct Input {
             float2 uv_MainTex;
         };
- 
-        void surf (Input IN, inout SurfaceOutput o) {
+
+        void surf (Input IN, inout SurfaceOutputStandard o) {
             fixed4 c = tex2D(_MainTex, IN.uv_MainTex);
-            o.Albedo = c.rgb;
+
+            // Toon shading
+            float toonLevel = dot(c.rgb, float3(0.3, 0.59, 0.11));
+            float toonThreshold = 0.2;
+            o.Albedo = lerp(float3(0.0, 0.0, 0.0), float3(1.0, 1.0, 1.0), step(toonThreshold, toonLevel));
+
             o.Alpha = c.a;
-            o.Emission = float3(_OutlineColor.rgb * step(_OutlineThickness, length(fwidth(IN.uv_MainTex))));
+
+            int _OutlineThickness;
+            // Outline effect
+            float outline = step(_OutlineThickness, length(fwidth(IN.uv_MainTex)));
+            o.Emission = _OutlineColor.rgb * outline;
         }
-        ENDCG
+        ENDHLSL
     }
+
     FallBack "Diffuse"
 }
